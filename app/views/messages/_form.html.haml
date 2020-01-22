@@ -1,0 +1,17 @@
+= form_for @message do |f|
+  - if @message.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
+      %ul
+        - @message.errors.full_messages.each do |message|
+          %li= message
+  .field
+    .field__title
+      = f.text_field :title, class: "field__title__input", placeholder: "タイトルを入力してください："
+    .field__image
+      -# = f.label :image
+      = f.file_field :image, class: "field__image__input",placeholder: "写真の貼り付け："
+    .field__text
+      = f.text_area :body,class: "field__text__input", placeholder: "テキストを入力して下さい："
+    .actions
+  　  = f.submit '＊Save＊', class: "actions__send"

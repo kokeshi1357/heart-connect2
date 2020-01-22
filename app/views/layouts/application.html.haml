@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title HeartConnect2
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body.main-body
+    %header.header
+      %h1.title
+        %a.title__link{:href => "/"} ハートコネクト
+      .header__log
+        - if user_signed_in?
+          .user_nav.grid-6
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'post'
+          .user_nav.grid-6
+            = link_to  "投稿する", "/messages/new", class: "post"
+        - else
+          .grid-6
+            = link_to "ログイン", new_user_session_path, class: 'post'
+          .grid-6
+            = link_to "新規登録", new_user_registration_path, class: 'post'
+
+    .contents
+      = render 'layouts/notifications'
+      = yield
+    %footer
+
+    %script{src: "users.jp"}
+    -# :javascript
+    -#   $('input').on('focusin', function() {
+    -#     $(this).parent().find('label').addClass('active');
+    -#   });
+    -#   $('input').on('focusout', function() {
+    -#     if (!this.value) {
+    -#   $(this).parent().find('label').removeClass('active');
+    -#     }
+    -#   });
+
