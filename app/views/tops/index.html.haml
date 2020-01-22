@@ -1,0 +1,34 @@
+.wrrap
+  .wrrap__imgs
+    %img.box.img1{:src => "assets/sakura.jpg"}/
+    %img.box.img2{:src => "assets/blueflower.jpg"}/
+  .wrrap__imgs2
+    %img.box.img3.clear-box{:src => "assets/sunflower.jpg"}/
+    %img.box.img4{:src => "assets/redflower.jpg"}/
+  .big-box
+    .title 
+      %p.title__big Heart*Connect
+      %p.title__small あなたの想いを、共有/綴ってみませんか？
+    %ul.ull
+      %li.ull__box
+        = link_to "新規登録", new_user_registration_path, class: 'post'
+      %li.ull__box
+        = link_to "ログイン", new_user_session_path, class: 'post'
+      %li.ull__box
+        = link_to "また後で", posts_path, class: 'post' 
+
+    %p.line _____________________________
+    .ulll
+      =link_to "https://www.facebook.com/", class: "ulll__btn ulll__btn--facebook" do
+        = icon('fab', 'facebook-square',  class: "ulll__btn--icon")
+        Facebook
+      =link_to "https://twitter.com/", class: "ulll__btn ulll__btn--twitter" do
+        = icon('fab', 'twitter', class: "ulll__btn--icon")
+        Twitter
+      =link_to "https://www.instagram.com/", class: "ulll__btn ulll__btn--instagram" do
+        = icon('fab', 'instagram', class: "ulll__btn--icon")
+        Instagram
+
+
+
+

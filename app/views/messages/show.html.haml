@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @message.title
+%p
+  %b Body:
+  = @message.body
+%p
+  %b Image:
+  = image_tag @message.image.url, class: "message-image" if @message.image.present?
+
+= link_to 'Edit', edit_message_path(@message)
+\|
+= link_to 'Back', messages_path 
