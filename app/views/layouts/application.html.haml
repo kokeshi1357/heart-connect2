@@ -5,6 +5,7 @@
     %title HeartConnect2
     = csrf_meta_tags
     = csp_meta_tag
+    %script{:src => "https://code.jquery.com/jquery-2.2.4.min.js"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.main-body
@@ -13,22 +14,34 @@
         %a.title__link{:href => "/"} ハートコネクト
       .header__log
         - if user_signed_in?
-          .user_nav.grid-6
+          %label.user_nav.grid-6
             = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'post'
-          .user_nav.grid-6
+          %label.user_nav.grid-6
             = link_to  "投稿する", "/messages/new", class: "post"
         - else
-          .grid-6
-            = link_to "ログイン", new_user_session_path, class: 'post'
-          .grid-6
+          %label.grid-6
+            = link_to "ログイン", new_user_session_path, class: 'post',id: :post
+          %label.grid-6
             = link_to "新規登録", new_user_registration_path, class: 'post'
 
     .contents
-      = render 'layouts/notifications'
+      -# = render 'layouts/notifications'
       = yield
     %footer
+      %p.prodution
+        2020 PRODUCTION IN TECH-EXPERT.
+      .ulll
+        =link_to "https://www.facebook.com/", class: "ulll__btn ulll__btn--facebook" do
+          = icon('fab', 'facebook-square',  class: "ulll__btn--icon")
+          -# Facebook
+        =link_to "https://twitter.com/", class: "ulll__btn ulll__btn--twitter" do
+          = icon('fab', 'twitter', class: "ulll__btn--icon")
+          -# Twitter
+        =link_to "https://www.instagram.com/", class: "ulll__btn ulll__btn--instagram" do
+          = icon('fab', 'instagram', class: "ulll__btn--icon")
+          -# Instagram
 
-    %script{src: "users.jp"}
+    -# %script{src: "users.jp"}
     -# :javascript
     -#   $('input').on('focusin', function() {
     -#     $(this).parent().find('label').addClass('active');

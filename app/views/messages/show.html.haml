@@ -1,15 +1,28 @@
-%p#notice= notice
+-# %p#notice= notice
 
-%p
-  %b Title:
-  = @message.title
-%p
-  %b Body:
-  = @message.body
-%p
-  %b Image:
-  = image_tag @message.image.url, class: "message-image" if @message.image.present?
+.show-whole
+  %b.title 
+    Title：
+    = @message.title
+  .wrrap-show
+    .wrrap-show__image
+      = image_tag @message.image.url, class: "message-image" if @message.image.present?
+    .show-contents
+      %b Body:
+      = @message.body
+  .allpath
+    - if user_signed_in?
+      =link_to "ユーザー詳細", "/users/#{@message.user_id}"
+      -# - @message.users.each do |u|
+      -#   %p
+      -#     %a{:href => "/users/#{u.id}"}
+      -#       = u.email
+      -#       さん
+    - if user_signed_in? && current_user.id == @message.user_id
+      = link_to 'Edit', edit_message_path(@message), class: "show-edit"
+      \　
+      = link_to 'Back', messages_path,class: "show-back"
+    = link_to "投稿一覧へ戻る",messages_path,class: "back-path"
 
-= link_to 'Edit', edit_message_path(@message)
-\|
-= link_to 'Back', messages_path 
+
+

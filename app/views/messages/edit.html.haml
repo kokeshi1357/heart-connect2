@@ -1,7 +1,9 @@
-%h1 Editing message
+.left-new-edit
+  %h1.text Editing message
+  = link_to 'Back', messages_path, class: "back-btn"
+  = link_to 'Show', @message, class: "edit-btn"
 
 = render 'form'
 
-= link_to 'Show', @message
-\|
-= link_to 'Back', messages_path
+
+
