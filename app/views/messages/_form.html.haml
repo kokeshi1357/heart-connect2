@@ -8,10 +8,28 @@
   .field
     .field__title
       = f.text_field :title, class: "field__title__input", placeholder: "タイトルを入力してください："
-    .field__image
-      -# = f.label :image
-      = f.file_field :image, class: "field__image__input",placeholder: "写真の貼り付け："
+    %label.field__image 
+      = icon('fas', 'image', class: 'icon')
+      %p.field__image__label 写真の挿入＝＝＞
+      = f.file_field :image, id: :message_img,placeholder: "写真の貼り付け："
+      :javascript
+        $(function() {
+         function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $('#img_prev').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+          }
+         }
+         $("#message_img").change(function(){
+           readURL(this);
+         });
+        });
+    .field__img-show
+      = image_tag @message.image.url, id: :img_prev,size: '800x600' if @message.image?
     .field__text
       = f.text_area :body,class: "field__text__input", placeholder: "テキストを入力して下さい："
-    .actions
-  　  = f.submit '＊Save＊', class: "actions__send"
+    %label.actions
+      = f.submit 'Send', class: "actions__send"

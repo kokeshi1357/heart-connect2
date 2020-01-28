@@ -1,5 +1,7 @@
-%h1.text Make a New Message
+.left-new-edit
+  %h1.text Make a New Message
+  = link_to '投稿一覧', messages_path, class: "back-btn"
 
 = render 'form'
 
-= link_to 'Back', messages_path, class: "new-back"
+

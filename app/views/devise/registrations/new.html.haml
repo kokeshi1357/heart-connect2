@@ -1,47 +1,35 @@
 .account-page
   .account-page__inner.clearfix
-    .account-page__inner--left.account-page__header
+    .account-page__inner__left.account-page__header
       %h2.create-en Create Account
       %p.line _______________________________________________________
       %h5.create-jp 新規アカウントの作成
-    .account-page__inner--right.user-form
+    .account-page__inner__right
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
-        .field
-          .field-label
-            = f.label :name
-          .field-input
-            = f.text_field :name, autofocus: true ,class: "link" 
-        .field
-          .field-label
-            = f.label :email
-          .field-input
-            = f.email_field :email, class: "link"
-        .field
-          .field-label
-            = f.label :password
-            %i (英数字8文字以上)
-          .field-input
-            = f.password_field :password, autocomplete: "off", class: "link" 
-        .field
-          .field-label
-            = f.label :password_confirmation
-          .field-input
-            = f.password_field :password_confirmation, autocomplete: "off", class: "link" 
-        %label.radio
-          = f.radio_button :character, "医師", :checked => "checked"
-          = succeed "医師" do
-            %span.outer
-              %span.inner
-        %label.radio
-          = f.radio_button :character, "患者"
-          = succeed "患者" do
-            %span.outer
-              %span.inner
-        %label.radio
-          = f.radio_button :character, "アカデミー", :checked => "checked"
-          = succeed "アカデミー" do
-            %span.outer
-              %span.inner
-        .actions
+        .field-move
+          = f.text_field :name,maxlength: "8",id: :input1,autocomplete: "off",class: "input-n"
+          %label{for: "input"} Nickname
+        .field-move
+          = f.text_field :email,id: :input1,autocomplete: "off",class: "input-e"
+          %label{for: "input"} Email
+        .field-move
+          = f.text_field :password, autocomplete: "off",id: :input1,class: "input-p"
+          %label{for: "input"} Password
+          %p.annotation ＊英数字8文字以上
+        .field-move
+          = f.text_field :password, autocomplete: "off",id: :input1,class: "input-c"
+          %label{for: "input"} Confirm
+          %p.annotation ＊パスワード再入力
+        .radio-btns
+          .radio
+            = f.radio_button :character, "医師", :checked => "checked",id: "item-1",class: "radio-inline__input"
+            %label.radio-inline__label{:for => "item-1"} 医師
+          .radio
+            = f.radio_button :character, "患者",id: "item-2",class: "radio-inline__input"
+            %label.radio-inline__label{:for => "item-2"} 患者
+          .radio
+            = f.radio_button :character,"アカデミー", id: "item-3",class: "radio-inline__input"
+            %label.radio-inline__label{:for => "item-3"} アカデミー
+        %label.actions
           = f.submit "登録する", class: 'btn'
