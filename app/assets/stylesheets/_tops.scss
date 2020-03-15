@@ -1,4 +1,4 @@
-.wrrap{
+
  //animation setting
 //  animation-name: fade-in1;
 //  animation-duration: 4s; //アニメーション時間
@@ -8,91 +8,6 @@
 //  animation-direction: normal; //往復処理をするかどうか
 //  animation-fill-mode: forwards; //アニメーション後のスタイルをどうするか
 
-  width: 100%;
-  height: 1044px;
-  position: relative;
-  background-color: rgb(255, 226, 226);
-
-  &__imgs{
-      display: flex;
-      .img1,.img2{
-       width: 48%;
-       height: 500px;
-       border: 1px solid white;
-       margin:10px;
-      }
-      .img1{
-       border-radius: 50% 50% 0 50%;
-      }
-      .img2{
-       border-radius: 50% 50% 50% 0;
-      }
-  }
-  &__imgs2{
-   display: flex;
-   .img3,.img4{
-    width: 48%;
-    height: 500px;
-    float: left;
-    border: 1px solid white;
-    margin: 10px;
-   }
-      .img3{
-       float:left;
-       border-radius: 50% 0 50% 50%;
-      }
-      .img4{
-       border-radius: 0 50% 50% 50%;
-      }
-  }
-  .title{
-   position: absolute;
-   top: 20%;
-   left: 50%;
-   transform: translateY(-50%) translateX(-50%);
-   &__big{
-    text-shadow: 1px 1px 1px white;
-    color: pink;
-    font-size: 100px;
-   }
-   &__small{
-    text-shadow: 1px 1px 1px #000;
-    color: white;
-    font-size: 30px;
-   }
-  }
-  ul.ull{
-   position: absolute;
-   top: 38%;
-   left: 48%;
-   transform: translateY(-50%) translateX(-50%);
-   font-size: 40px;
-   display: flex;
-   margin-bottom: 50px;
-    li{
-     margin-left: 30px;
-     border: solid 1px white;
-     height: 100px;
-     width: 250px;
-     background-color: rgba(255, 192, 203, 0.9);
-     border-radius: 50%;
-     text-align: center;
-     .post{
-      color: white;
-      text-decoration: none;
-      line-height: 100px;
-     }
-    }
-  }
-  .line{
-   position: absolute;
-   top: 70%;
-   left: 48%;
-   transform: translateY(-50%) translateX(-50%);
-   font-size: 70px;
-   color: rgba(255, 192, 203, 0.7)
-  }
-}
 // @keyframes fade-in1 {
 //  0% {
 //    opacity: 0.1;

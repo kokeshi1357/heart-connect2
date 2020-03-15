@@ -1,0 +1,188 @@
+.mypage{
+ width: min-content;
+ height: 590px;
+ background-color: white;
+ display: flex;
+ margin: 54px auto 35px;
+ box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
+  &__menu{
+   width: 70px;
+   text-align: center;
+   border-right: 1px solid #f3f3f3;
+    li{
+     cursor: pointer;
+     height: 71px;
+      &:hover{
+       outline: 2px solid #62b1ca;
+       outline-offset: -2px;
+       border-radius: 2px;
+      }
+      i{
+       line-height: 71px;
+       font-size: 30px;
+       color: #62b1ca;
+       margin: 0 0 20px;
+      }
+      .icon-write{
+       margin: 0 0 0 5px;
+      }
+    }
+    #profile{
+     background-color: #62b1ca;
+     i{
+      font-size: 40px;
+      color: #fff;
+     }
+    }
+  }
+  &__whole{
+   width: 870px;
+    .mypage-top{
+     height: 56px;
+     border-bottom: 1px solid #f3f3f3;
+     text-align: center;
+     span.top-text{
+       font-size: 25px;
+       color: #444;
+       line-height: 56px;
+     }
+    }
+    .mypage-main{
+     height: calc(100% - 57px);
+     //ホーム画面
+      ul.menu-lists{
+       display: flex;
+       border-bottom: #f3f3f3 1px solid;
+       li{
+         width: 290px;
+         height: 265px;
+         text-align: center;
+         position: relative;
+         border-right: #f3f3f3 1px solid;
+          &:hover{
+           background-color: #f6f6f6;
+          }
+          &:hover {
+           .user-show-text{
+            color: #62b1ca;
+           }
+          }
+          .logo-box{
+           height: 200px;
+           i{
+            color: #62b1ca;
+            font-size: 90px;
+            line-height: 200px;
+           }
+           .icon-write{
+            margin: 0 0 0 20px;
+           }
+          }
+          .user-show-text{
+           color: #555;
+           width: 100%;
+           position: absolute;
+           bottom: 45px;
+           left: 0;
+          }
+        }
+        .profile-box{
+         &__img{
+          height: 130px;
+          width: 130px;
+          border-radius: 50%;
+          margin: 30px 0 0;
+         }
+        }
+      }
+      //プロフィール画面
+      .edit_user{
+       height: 100%;
+        .user-info{
+         padding: 20px;
+         height: calc(100% - 40px);
+         display: flex;
+          span{
+           color: #888;
+           font-size: 14px;
+          }
+          &__right{
+           width: 45%;
+           .img-wrapper{
+            margin: 30px;
+            width: fit-content;
+            position: relative;
+             .profile-img{
+              height: 200px;
+              width: 200px;
+              border-radius: 50%;
+             }
+             i{
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              padding: 15px;
+              border-radius: 50%;
+              background-color: #3333338f;
+              font-size: 30px;
+              color: white;           }
+           }
+           .introduction{
+            margin: 5px 0 0;
+            width: 92%;
+            min-height: 45%;
+            padding: 0 15px;
+            word-break: break-all;
+            overflow: scroll;
+            #user_detail{
+             width: 100%;
+             height: 200px;
+             border: none;
+             outline: none;
+            }
+           }
+          }
+          &__left{
+           width: 55%;
+           position: relative;
+           .text-box{
+            font-size: 20px;
+            padding: 20px 0 10px;
+            border-bottom: 1px solid #8888;
+             .user-text{
+              margin: -2px 0 0;
+              #user_name{
+               border: none;
+               outline: none;
+              }
+              #user_character{
+               width: 100%;
+               border: none;
+               outline: none;
+               -webkit-appearance: none; 
+               background: none;
+               background-image: url(/assets/angle-down-solid.svg);
+               background-repeat: no-repeat;
+               background-size: 14px 30px;
+               background-position: right 20px center;        
+              }
+             }
+           }
+           .user-update{
+            color: white;
+            background-color: #71c9e4;
+            padding: 13px 25px;
+            border-radius: 3px;
+            font-size: 18px;
+            position: absolute;
+            bottom: 40px;
+            right: 30px;
+            cursor: pointer;
+            outline: none;
+           }
+          }
+        }
+      }
+    }
+  }
+}

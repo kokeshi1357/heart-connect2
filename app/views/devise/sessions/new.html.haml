@@ -4,15 +4,18 @@
       %h2.create-en2 Log in
       %p.line _______________________________________________________
       %h5.create-jp 　　　　登録しているユーザーでログイン
-      -# = render "devise/shared/links"
     .account-page__inner__right.user-form
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field-move
-          = f.text_field :email,id: :input1,class: "input-e",autocomplete: "off"
+          = f.text_field :email, autocomplete: "off", class: "input1", id: :input_e
           %label{for: "input"} Email
+          %span#email_error.reg_e
+          .input_line#line_e
         .field-move
-          = f.text_field :password, autocomplete: "off",id: :input1,class: "input-p"
+          = icon("fas", "eye-slash", id: "eye_i")
+          = f.password_field :password, autocomplete: "off", class: "input1 eye", id: :input_p
           %label{for: "input"} Password
-          %p.annotation ＊英数字8文字以上
-        %label.actions
-          = f.submit "Log in", class: 'btn'
+          %span#pass_error.reg_e
+          .input_line#line_p
+        %label.actions#margin_bottom
+          = f.submit "Log in", class: 'register_btn'

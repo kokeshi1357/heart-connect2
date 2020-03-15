@@ -1,31 +1,26 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, except: [:index, :new, :create]
+  before_action :set_message_user, only: [:show]
 
-  # GET /messages
-  # GET /messages.json
   def index
-    @messages = Message.includes(:user)  # .order("created_at DESC").page(params[:page]).per(5)
+    @messages = Message.includes(:user).order(id: "DESC")  # .order("created_at DESC").page(params[:page]).per(5)
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
   def show
   end
 
-  # GET /messages/new
   def new
     @message = Message.new
+    @message.images.new
   end
 
-  # GET /messages/1/edit
   def edit
+    @message.images.build
+    @images = Image.where(message_id: @message.id)
   end
 
-  # POST /messages
-  # POST /messages.json
   def create
     @message = Message.new(message_params)
-
     respond_to do |format|
       if @message.save
         format.html { redirect_to messages_path, notice: 'Message was successfully created.' }
@@ -37,8 +32,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /messages/1
-  # PATCH/PUT /messages/1.json
   def update
     respond_to do |format|
       if @message.update(message_params)
@@ -51,24 +44,24 @@ class MessagesController < ApplicationController
     end
   end
 
-  # DELETE /messages/1
-  # DELETE /messages/1.json
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_message_user
+      @user = User.find(@message.user_id)
+    end
+
     def message_params
-      params.require(:message).permit(:title, :body, :image).merge(user_id: current_user.id)
+      params.require(:message).permit(:title, :body, images_attributes: [:img_src, :_destroy, :id]).merge(user_id: current_user.id)
     end
 end

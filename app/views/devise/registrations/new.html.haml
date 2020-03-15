@@ -6,21 +6,41 @@
       %h5.create-jp 新規アカウントの作成
     .account-page__inner__right
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = devise_error_messages!
+        .field-image
+          = image_tag "", class: "future_user_img" #/assets/default.jpg
+          .no-img
+            = icon("fas", "user")
+          %label.img_label{ for: "user_user_image"}
+            .img-frame
+            = f.file_field :user_image
+        .img_title
+          = icon("fas", "camera")
+          %p プロフィール画像
         .field-move
-          = f.text_field :name,maxlength: "8",id: :input1,autocomplete: "off",class: "input-n"
+          = f.text_field :name,maxlength: "8",id: :input_n,autocomplete: "off",class: "input1"
           %label{for: "input"} Nickname
+          %span#nickname_error.reg_e 
+          .input_line#line_n
+
         .field-move
-          = f.text_field :email,id: :input1,autocomplete: "off",class: "input-e"
+          = f.text_field :email,id: :input_e,autocomplete: "off",class: "input1"
           %label{for: "input"} Email
+          %span#email_error.reg_e
+          .input_line#line_e
+
         .field-move
-          = f.text_field :password, autocomplete: "off",id: :input1,class: "input-p"
+          = icon("fas", "eye-slash", id: "eye_i")
+          = f.password_field :password, autocomplete: "off",id: :input_p,class: "input1 eye"
           %label{for: "input"} Password
-          %p.annotation ＊英数字8文字以上
+          %span#pass_error.reg_e
+          .input_line#line_p
+
         .field-move
-          = f.text_field :password, autocomplete: "off",id: :input1,class: "input-c"
+          = f.password_field :password_confirmation, autocomplete: "off",id: :input_c,class: "input1 eye"
           %label{for: "input"} Confirm
-          %p.annotation ＊パスワード再入力
+          %span#confo_error.reg_e
+          .input_line#line_c
+
         .radio-btns
           .radio
             = f.radio_button :character, "医師", :checked => "checked",id: "item-1",class: "radio-inline__input"
@@ -32,4 +52,4 @@
             = f.radio_button :character,"アカデミー", id: "item-3",class: "radio-inline__input"
             %label.radio-inline__label{:for => "item-3"} アカデミー
         %label.actions
-          = f.submit "登録する", class: 'btn'
+          = f.submit "登録する", class: 'register_btn'

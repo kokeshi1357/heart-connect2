@@ -1,0 +1,21 @@
+.header
+  .title
+    %a.title__link{href: root_path } 　Heart Connect
+    = icon("fas", "search")
+    - if user_signed_in?
+      = link_to "#{current_user.name}", "/users/#{current_user.id}",class: "user_name"
+      - if current_user.user_image.present?
+        = image_tag current_user.user_image.url, class: "user_image"
+      - else
+        = image_tag "/assets/default.jpg", class: "user_image"
+  .header__log
+    - if user_signed_in?
+      %label.user_nav.grid-6
+        = link_to "ログアウト", destroy_user_session_path(current_user.id), method: :delete, class: 'post'
+      %label.user_nav.grid-6
+        = link_to  "投稿する", "/messages/new", class: "post"
+    - else
+      %label.grid-6
+        = link_to "ログイン", new_user_session_path, class: 'post',id: :post
+      %label.grid-6
+        = link_to "新規登録", new_user_registration_path, class: 'post'

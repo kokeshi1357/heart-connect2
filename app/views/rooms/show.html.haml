@@ -1,0 +1,74 @@
+= render "modules/header"
+.room_whole
+  .right_room
+    .menu
+      %ul.menu__box
+        %li.user
+          = icon("far", "address-book", id: :user_icon)
+          .btn_name ユーザー情報
+        %li.bell
+          = icon("far","bell", id: :bell_icon)
+          .btn_name 通知
+        %li.comment
+          = icon("far", "comment-dots", id: :comment_icon)
+          .btn_name メッセージ
+        %li.note
+          = icon("far", "sticky-note", id: :note_icon)
+          .btn_name メモ
+      .menu__board
+    .undecided
+      = form_for @dm ,html: {class: 'dm-form'} do |f|
+        = f.text_area :content, :placeholder => "メッセージを入力して下さい",class: "dm_input", cols: "40", rows:"8"
+        = f.hidden_field :room_id, :value => @room.id
+        = f.submit "投稿する", class: "send_dm", style: "border: none"
+  .left_room
+    - @entries.each do |e|
+      - if e.user.id != current_user.id
+        .anothers_name
+          = e.user.name + " さん"
+    -# dmの場所
+    .dm_box  
+      #dms
+        - if @dms.present?
+          - @dms.each do |dm|
+            -if dm.user_id == current_user.id
+              .your_dm
+                .user_name
+                  %a{:href => "/users/#{dm.user_id}"}
+                    = dm.user.name
+                .dm_content
+                  %span.dm_content__span  
+                    -# 改行も段落も反映する
+                    = safe_join(dm.content.split("\n"),tag(:br))
+
+            - else
+              .anothers_dm
+                .user_name
+                  %a{:href => "/users/#{dm.user_id}"}
+                    = dm.user.name
+
+                .dm_content
+                  %span.dm_content__span
+                    = safe_join(dm.content.split("\n"),tag(:br))
+      .bottom
+
+
+-# %h1 ダイレクトメッセージ
+-# %h4 参加者
+-# - if @dms.present?
+-#   - @dms.each do |dm|
+-#     %strong= dm.content
+-#     %small
+-#       by
+-#       %strong
+-#         %a{:href => "/users/#{dm.user_id}"}
+-#           = dm.user.name
+-#           さん
+-# - else
+-#   %h3.text-center メッセージはまだありません
+-# = form_for @dm do |f|
+-#   = f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70
+-#   = f.hidden_field :room_id, :value => @room.id
+-#   %br/
+-#   = f.submit "投稿する"
+-# = link_to "一覧に戻る", messages_path

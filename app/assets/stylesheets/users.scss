@@ -1,169 +1,161 @@
-.account-page{
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  padding: 40px 150px;
-  &__inner{
-  width:100%;
-  border-radius: 20px;
-  box-shadow:0px 0px 5px;
-  background-color: #fff;
-  padding: 15px 0;
-  font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
-  font-weight: lighter;
-   &__left{
-    position: relative;
-    text-align: center;
-    width: 100%;
-    .create-en{
-     font-weight: lighter;
-     font-size: 60px;
-    }
-    .create-en2{
-     font-weight: lighter;
-     font-size: 60px;
-     margin-left: -25%;
-    }
-    .line{
-     color:rgb(78, 211, 216);
-     font-size: 10px;
-     margin:-10px 0 5px -120px; 
-    }
-    .create-jp{
-     margin-left: -240px;
-    }
-   }
+// .account-page{
+//   width: 100%;
+//   height: 100%;
+//   &__inner{
+//   width:100%;
+//   padding: 15px 0;
+//   font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+//   font-weight: lighter;
+//    &__left{
+//     position: relative;
+//     text-align: center;
+//     width: 100%;
+//     .create-en{
+//      font-weight: lighter;
+//      font-size: 60px;
+//     }
+//     .create-en2{
+//      font-weight: lighter;
+//      font-size: 60px;
+//      margin-left: -17%;
+//     }
+//     .line{
+//      color:rgb(78, 211, 216);
+//      font-size: 10px;
+//      margin:-10px 0 5px -120px; 
+//     }
+//     .create-jp{
+//      margin-left: -240px;
+//     }
+//    }
   
-   &__right{
-    margin-top: 50px;
-    width: 100%;
-    ::placeholder{
-     color: rgb(167, 167, 167);
-    }
-    .new_user{
-     width:100%;
-     .radio-btns{
-      margin: 0 auto;
-      width: 550px;
-      display: flex;
-      text-align: center;
-      .radio{
-       margin: 30px;
-       .radio-inline__input {
-        clip: rect(1px, 1px, 1px, 1px);
-        position: absolute !important;
-       }
+//    &__right{
+//     margin-top: 50px;
+//     width: 100%;
+//     ::placeholder{
+//      color: rgb(167, 167, 167);
+//     }
+//     .new_user{
+//      width:100%;
+//      .radio-btns{
+//       margin: 60px auto 0;
+//       width: 550px;
+//       display: flex;
+//       text-align: center;
+//       .radio{
+//        margin: 30px;
+//        .radio-inline__input {
+//         clip: rect(1px, 1px, 1px, 1px);
+//         position: absolute !important;
+//        }
        
-       .radio-inline__label {
-         color: gray;
-         display: inline-block;
-         padding: 5px 5px;
-         margin-right: 18px;
-         border: rgb(202, 202, 202) dashed 1px;
-         border-radius: 3px;
-         transition: all .2s;
-         width: 100px;
-         height: 35px;
-         line-height: 35px;
-         font-size: 20px;
-       }
-       
-       .radio-inline__input:checked + .radio-inline__label {
-         background: rgb(78, 211, 216);
-         color: #fff;
-         text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
-         border: none;
-       }
-       // .radio-inline__input:focus + .radio-inline__label {
-       //   outline-color: rgb(78, 211, 216);
-       //   outline-offset: -2px;
-       //   outline-style: auto;
-       //   outline-width: 5px;
-       // }
-      }
-     }
+//        .radio-inline__label {
+//          color: #888;
+//          display: inline-block;
+//          padding: 5px 5px;
+//          margin-right: 18px;
+//          border: white dashed 1px;
+//          border-radius: 3px;
+//          transition: all .2s;
+//          width: 100px;
+//          height: 35px;
+//          line-height: 35px;
+//          font-size: 20px;
+//        }
+//        .radio-inline__input:checked + .radio-inline__label {
+//          background: rgb(78, 211, 216);
+//          color: #fff;
+//          border: none;
+//        }
+//       }
+//      }
 
-     label.actions{
-      background-color:  rgb(78, 211, 216);
-      border-radius: 5px;
-      height: 45px;
-      width: 400px;
-      margin: 50px auto;
-      line-height: 45px;
-      display: flex;
-      .btn{
-       margin: 0 auto;
-       background-color:  rgb(78, 211, 216);
-       border: none;
-       font-size: 25px;
-       color: white;
-       outline: none;
-      }
-     }
+//      label.actions{
+//       background-color:  rgb(78, 211, 216);
+//       border-radius: 5px;
+//       height: 50px;
+//       width: 500px;
+//       margin: 50px auto;
+//       line-height: 50px;
+//       display: flex;
+//       .register_btn{
+//        margin: 0 auto;
+//        background-color:  inherit;
+//        border: none;
+//        font-size: 25px;
+//        color: white;
+//        outline: none;
+//       }
+//      }
+//      #margin_bottom{ //ログイン時のボタン
+//       margin: 150px auto 100px;
+//     }
+//      .field-move{
+//        position: relative;
+//        margin:65px auto 0;
+//        width: 500px;
+//        #input_n{
+//         padding: 10px 10px 10px 130px;
+//        }
+//        #input_e{
+//         padding: 10px 10px 10px 80px;
+//        }
+//        #input_p{
+//         padding: 10px 10px 10px 125px;
+//        }
+//        #input_c{
+//         padding: 10px 10px 10px 110px;
+//        }
+//        .input1{
+//          display: inline-block;
+//          width: 500px;
+//          height: 50px;
+//          box-sizing: border-box;
+//          outline: none;
+//          border: 1px solid rgb(78, 211, 216);
+//          border-radius: 3px;
+//          transition: all 0.1s ease-out;
+//        }
+//        .input1 + label{
+//          z-index: 10;
+//          font-size: 25px;
+//          position: absolute;
+//          top: 4px;
+//          left: 8px;
+//          bottom: 0;
+//          height: 40px;
+//          line-height: 40px;
+//          color: rgb(78, 211, 216);
+//          border-radius: 5px;
+//          padding: 0 3px;
+//          transform: translateZ(0) translateX(0);
+//          transition: all 0.3s ease-in;
+//          transition-delay: 0.2s;
+//        }
+//        .input1:focus + label{
+//          transform: translateY(-62%) translateX(0%);
+//          border-radius: 3px;
+//          transition: all 0.1s ease-out;
+//          font-size: 18px;
+//        }
+//        .input_line{
+//         position: absolute;
+//         top: 0;
+//         left: 7px;
+//         height: 1px;
+//        }
+//        .reg_e{
+//         color: #636363;
+//         font-size: 14px;
+//         position: absolute;
+//         left: 10px;
+//         top: 52px;
+//        }
+//      }
+//     }
+//    }
+//   }
+// }
 
-     .field-move{
-       position: relative;
-       margin:50px auto;
-       width: 500px;
-       .annotation{
-        color: rgb(177, 175, 175);
-       }
-       .input-n{
-        padding: 10px 10px 10px 130px;
-       }
-       .input-e{
-        padding: 10px 10px 10px 80px;
-       }
-       .input-p{
-        padding: 10px 10px 10px 125px;
-       }
-       .input-c{
-        padding: 10px 10px 10px 110px;
-       }
-       #input1{
-         display: inline-block;
-         width: 500px;
-         height: 50px;
-         box-sizing: border-box;
-         outline: none;
-         border: 1px solid rgb(78, 211, 216);
-         border-radius: 3px;
-         transition: all 0.1s ease-out;
-       }
-       
-       #input1 + label{
-         font-size: 25px;
-         position: absolute;
-         top: 4px;
-         left: 7px;
-         bottom: 0;
-         height: 40px;
-         line-height: 40px;
-         color: rgb(78, 211, 216);
-         border-radius: 5px;
-         padding: 0 3px;
-         background: white;
-         transform: translateZ(0) translateX(0);
-         transition: all 0.3s ease-in;
-         transition-delay: 0.2s;
-       }
-       
-       #input1:focus + label{
-         transform: translateY(-62%) translateX(0%);
-         border-radius: 3px;
-         transition: all 0.1s ease-out;
-         font-size: 17px;
-       }
-       
-       #input1:focus{
-         padding: 10px;
-         transition: all 0.3s ease-out;
-         transition-delay: 0.2s;
-       }
-     }
-    }
-   }
-  }
-}
 
-@import  url(https://fonts.googleapis.com/css?family=Montserrat);
+// @import  url(https://fonts.googleapis.com/css?family=Montserrat);

@@ -1,0 +1,219 @@
+.account-page{
+ min-width: 1186px;
+ height: 100%;
+ &__inner{
+ width:100%;
+ padding: 15px 0;
+ font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+ font-weight: lighter;
+  &__left{
+   position: relative;
+   text-align: center;
+   width: 100%;
+   .create-en{
+    font-weight: lighter;
+    font-size: 60px;
+   }
+   .create-en2{
+    font-weight: lighter;
+    font-size: 60px;
+    margin-left: -17%;
+   }
+   .line{
+    color:rgb(78, 211, 216);
+    font-size: 10px;
+    margin:-10px 0 5px -120px; 
+   }
+   .create-jp{
+    margin-left: -240px;
+   }
+  }
+ 
+  &__right{
+   margin-top: 50px;
+   width: 100%;
+   ::placeholder{
+    color: rgb(167, 167, 167);
+   }
+   .new_user{
+    width:100%;
+    position: relative;
+    .img_title{
+      display: flex;
+      position: fixed;
+      left: 6%;
+      top: 25%;  
+      font-size: 14px;
+      color: #666;
+      i{
+        font-size: 24px;
+        margin: 3px 5px 0 10px;
+      }
+      p{
+        transform: translate(0,20%);
+      }
+    }
+    .field-image{
+      position: fixed;
+      left: 6%;
+      top: 25%;  
+      height: 250px;
+      width: 250px;
+      overflow: scroll;
+      border: 10px solid white;
+      border-top: 30px solid white;
+      border-radius: 3px;
+      .future_user_img{
+        position: absolute;
+      }
+      .no-img{
+        width: 100%;
+        height: 100%;
+        background-color: #dedede;
+        position: absolute;
+        text-align: center;
+        i{
+          color: #777;
+          font-size: 150px;
+          transform: translateY(30%);
+        }
+      }
+      label{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        #user_user_image{
+          display: none;
+        }
+        .img-frame{
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+        }
+        &:hover{
+          .img-frame{
+            box-shadow: 0px 0px 0px 58px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+    .radio-btns{
+     margin: 60px auto 0;
+     width: 550px;
+     display: flex;
+     text-align: center;
+     .radio{
+      margin: 30px;
+      .radio-inline__input {
+       clip: rect(1px, 1px, 1px, 1px);
+       position: absolute !important;
+      }
+      
+      .radio-inline__label {
+        color: #888;
+        display: inline-block;
+        padding: 5px 5px;
+        margin-right: 18px;
+        border: white dashed 1px;
+        border-radius: 3px;
+        transition: all .2s;
+        width: 100px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 20px;
+      }
+      .radio-inline__input:checked + .radio-inline__label {
+        background: rgb(78, 211, 216);
+        color: #fff;
+        border: none;
+      }
+     }
+    }
+
+    label.actions{
+     background-color:  rgb(78, 211, 216);
+     border-radius: 5px;
+     height: 50px;
+     width: 500px;
+     margin: 50px auto;
+     line-height: 50px;
+     display: flex;
+     .register_btn{
+      margin: 0 auto;
+      background-color:  inherit;
+      border: none;
+      font-size: 25px;
+      color: white;
+      outline: none;
+     }
+    }
+    #margin_bottom{ //ログイン時のボタン
+     margin: 150px auto 100px;
+    }
+    .field-move{
+      position: relative;
+      margin:65px auto 0;
+      width: 500px;
+      .input1{
+        padding: 10px 10px 10px 130px;
+        display: inline-block;
+        width: 500px;
+        height: 50px;
+        box-sizing: border-box;
+        outline: none;
+        border: 1px solid rgb(78, 211, 216);
+        border-radius: 3px;
+        transition: all 0.1s ease-out;
+      }
+      .input1 + label{
+        z-index: 10;
+        font-size: 25px;
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        bottom: 0;
+        height: 40px;
+        line-height: 40px;
+        color: rgb(78, 211, 216);
+        border-radius: 5px;
+        padding: 0 3px;
+        transform: translateZ(0) translateX(0);
+        transition: all 0.3s ease-in;
+        transition-delay: 0.2s;
+      }
+      .input1:focus + label{
+        transform: translateY(-62%) translateX(0%);
+        border-radius: 3px;
+        transition: all 0.1s ease-out;
+        font-size: 18px;
+      }
+      .input_line{
+       position: absolute;
+       top: 0;
+       left: 7px;
+       height: 1px;
+      }
+      .reg_e{
+       color: #636363;
+       font-size: 14px;
+       position: absolute;
+       left: 10px;
+       top: 52px;
+      }
+      #eye_i{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #666;
+        padding: 5px;
+        font-size: 18px;
+      }
+    }
+   }
+  }
+ }
+}
+
+
+@import  url(https://fonts.googleapis.com/css?family=Montserrat);

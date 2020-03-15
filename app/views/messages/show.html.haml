@@ -1,28 +1,51 @@
--# %p#notice= notice
-
-.show-whole
-  %b.title 
-    Title：
-    = @message.title
-  .wrrap-show
-    .wrrap-show__image
-      = image_tag @message.image.url, class: "message-image" if @message.image.present?
-    .show-contents
-      %b Body:
-      = @message.body
-  .allpath
-    - if user_signed_in?
-      =link_to "ユーザー詳細", "/users/#{@message.user_id}"
-      -# - @message.users.each do |u|
-      -#   %p
-      -#     %a{:href => "/users/#{u.id}"}
-      -#       = u.email
-      -#       さん
-    - if user_signed_in? && current_user.id == @message.user_id
-      = link_to 'Edit', edit_message_path(@message), class: "show-edit"
-      \　
-      = link_to 'Back', messages_path,class: "show-back"
-    = link_to "投稿一覧へ戻る",messages_path,class: "back-path"
-
-
-
+.box
+  = render "modules/side-bar"
+  .box_2
+    .show_whole
+      .message_head
+        .user_head
+          = link_to "#{@user.name}", "/users/#{@user.id}",class: "user_head__name"
+          - if @user.user_image.present?
+            = image_tag @user.user_image.url, class: "user_image"
+          - else 
+            = image_tag "/assets/default.jpg", class: "user_image"
+        - if @message.user_id == current_user.id
+          %button.menu_box
+            = icon("fas","bars")
+            %ul.menu_lists
+              %li
+                = link_to '編集する', edit_message_path(@message), class: "show-menu"
+              %li
+                = link_to '削除する', message_path(@message.id), method: :delete,class: "show-menu"
+              %li
+                = link_to '戻る', messages_path, class: "show-menu"
+      .message_contents
+        - if @message.images.present?
+          .message_contents__images
+            .image_box
+              - @message.images.each do |image|
+                = image_tag image.img_src.url
+            .image_lists
+          .message_contents__details
+            %span.show_title{style: "font-size: 25px;"}
+              = @message.title
+            .show_text{style: "font-size: 16px;"}
+              = safe_join(@message.body.split("\n"),tag(:br))
+        - else
+          .message_contents__details
+            .show_title
+              = @message.title
+            .show_text
+              = safe_join(@message.body.split("\n"),tag(:br))
+      .comment_area
+        %ul.comments
+          %li.comment
+            .comment__others_image
+            .comment__contents
+              %span.c_content hello
+              .c_date
+                2020/3/5  johnさん
+        .comment_area__input_box
+          .your_image
+          %span.c_input
+            コメントを入力してください

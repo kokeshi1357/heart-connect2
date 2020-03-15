@@ -1,20 +1,19 @@
 .box
-  .box_1
-    %p ブログ検索
-    .search
-    %p.exhibit リスト
-    %ul.lists 
-      %li.lists__li 癌系統
-      %li.lists__li 認知症
-      %li.lists__li ALS
+  = render "modules/side-bar"
   .box_2
     .index-whole
       .index-head
         %h1.index-head__title 投稿一覧
       .index-table
-        .allbox
-          - @messages.each do |message|
-            .message-box
+        - @messages.each do |message|
+          .message_box
+            -# - if message.image.present?
+            -#   .index_message_image
+            -#     = image_tag message.image.url,{style: "max-height:100px; max-width:150px;"}
+            -# - else
+            -# = image_tag message.images.first.img_src.url 
+            .no_image No Image
+            .message
               = link_to '', message,id: :link
               .chara
                 = message.user.character
@@ -24,24 +23,24 @@
                 %p.title__call Title：
                 = message.title
 
-      .news
-        %p.pickup < 今週のPickUP >
-        .news__box
-          .help1
-            %img{src: "assets/helog.png",width: "280px",height: "195px"}
-            = link_to "", "https://activo.jp/articles/75674"
-            福岡空港しょうがい者・こうれい者　
-            %br
-            観光案内所 窓口ボランティア募集！
-            %label 福岡空港しょうがい者・こうれい者観光案内所は、令和元年11月15日に福岡国際空港内に新しく開設されました。それに伴い、現在、無償の窓口ボランティアを大募集しております。
+      -# .news
+      -#   %p.pickup < 今週のPickUP >
+      -#   .news__box
+      -#     .help1
+      -#       %img{src: "assets/helog.png",width: "280px",height: "195px"}
+      -#       = link_to "", "https://activo.jp/articles/75674"
+      -#       福岡空港しょうがい者・こうれい者　
+      -#       %br
+      -#       観光案内所 窓口ボランティア募集！
+      -#       %label 福岡空港しょうがい者・こうれい者観光案内所は、令和元年11月15日に福岡国際空港内に新しく開設されました。それに伴い、現在、無償の窓口ボランティアを大募集しております。
 
-          .help1
-            %img{src: "assets/timony.png",width: "280px",height: "195px"}
-            = link_to "", "https://activo.jp/articles/76452"
-            フリースクール山ねこ
-            %br 
-            子どもと関わるスタッフ募集！
-            %label 福岡県糟屋郡篠栗町萩尾、山の中の小さな学校。子ども一人ひとりの個性やペース、意欲を基に活動しています。子どもたちの気持ちややる気を育む関わりをしてくれるスタッフ求む！
+      -#     .help1
+      -#       %img{src: "assets/timony.png",width: "280px",height: "195px"}
+      -#       = link_to "", "https://activo.jp/articles/76452"
+      -#       フリースクール山ねこ
+      -#       %br 
+      -#       子どもと関わるスタッフ募集！
+      -#       %label 福岡県糟屋郡篠栗町萩尾、山の中の小さな学校。子ども一人ひとりの個性やペース、意欲を基に活動しています。子どもたちの気持ちややる気を育む関わりをしてくれるスタッフ求む！
 
 
 

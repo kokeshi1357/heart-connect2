@@ -1,7 +1,36 @@
-.left-new-edit
-  %h1.text Make a New Message
-  = link_to '投稿一覧', messages_path, class: "back-btn"
-
-= render 'form'
-
-
+= form_for @message do |f|
+  .message-side
+    = f.submit 'Send', class: "new_msg_send"
+    %ul.msg_menu
+      %li
+        = icon("fas","paper-plane")
+      %li
+        = icon("fas","paperclip")
+      %li
+        = icon("fas","file")
+      %li
+        = icon("fas","tags")
+      %li
+        = icon("fas","trash")
+  .message-main
+    .title-area
+      %span.msg_e#title_error
+      = f.text_field :title, autocomplete: "off", placeholder: "タイトル：", maxlength: 25
+    .img-area
+      %span.img-area__annotation 画像は5枚まで入力できます
+      .img-area__menu
+        = f.fields_for :images do |img|
+          %label#msg-img-box{for: "message_images_attributes_0_img_src"}
+            .push_btn#add-img 追加
+          .js-file_group{"data-index" => "#{img.index}"}
+            = img.file_field :img_src, class: 'js-file'
+          .push_btn#delete-img{name: ""}
+            選択
+          .push_btn#done-img
+            削除
+      .img-area__box
+      = icon("fas", "camera", class: "camera")
+    .detail-area
+      %span.msg_e#detail_error
+      = f.text_area :body,placeholder: "テキスト："
+      %button.text_reset_btn{type: "button"} リセット

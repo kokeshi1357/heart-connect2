@@ -1,40 +1,165 @@
-.show-whole{
- padding: 10px;
-  b.title{
-   font-size: 40px;
-   margin: 10px;
-  }
-  .wrrap-show{
-   display:flex;
-   margin-bottom: 10px;
-   &__image{
-
-    .message-image{
+//投稿の詳細画面
+.show_whole{
+  min-width: 800px;
+  padding: 20px 50px;
+  margin: 20px 70px;
+  background-color: white;
+  .message_head{
+    padding: 17px 15px;
+    display: flex;
+    justify-content: space-between;
+    .user_head{
+      display: flex;
+      width: fit-content;
+      &__name{
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+        margin: 0 8px 0 0;
+        line-height: 45px;
+      }
     }
-   }
-   .show-contents{
-    margin-left: 10px;
-   }
+    button.menu_box{
+      width: 50px;
+      border: none;
+      outline: none;
+      cursor:pointer;
+      position: relative;
+      i{
+        font-size: 30px;
+        margin: 5px 0 0;
+        &:hover{
+          font-size: 35px;
+        }
+      }
+      &:hover{
+        i{
+          font-size: 35px;
+        }
+        ul.menu_lists{
+          display: block;
+        }
+      }
+      ul.menu_lists{
+        text-decoration: none;
+        border: #9999 1px solid;
+        border-radius: 2px;
+        background-color: #fff;
+        display: none;
+        position: absolute;
+        top: 45px;
+        left: -22px;
+        li{
+          font-size: 16px;
+          width: 90px;
+          padding: 2px 0;
+          .show-menu{
+            text-decoration: none;
+            color: #333;
+          }
+          &:hover{
+            background-color: #5bccee;
+            .show-menu{
+              color: white;
+            }
+          }
+        }
+      }
+    }
   }
-  .allpath{
-   display: flex;
-   margin-bottom: 50px;
-   .show-edit{
-    text-decoration: none;
-    color:rgb(61, 61, 61);
-    font-size: 30px;
-    margin-right: 20%;
-   }
-   .show-back{
-    font-size: 30px;
-    text-decoration: none;
-    color: rgb(61, 61, 61);
-    margin-right: 20%;
-   }
-   .back-path{
-    text-decoration: none;
-    color: rgb(61, 61, 61);
-    font-size: 30px;
-   }
+  .message_contents{
+    display: flex;
+    &__images{
+      background-color: #333;
+      width: 100%;
+      height: 550px;
+      .image_box{
+        height: 450px;
+        // width: 500px;
+        display: flex;
+        align-items: center;
+        overflow: scroll;
+        img{
+          margin: 0 auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+      .image_lists{
+       height: 100px;
+       width: 100%;
+       background-color: steelblue;
+      }
+    }
+    &__details{
+      width: 70%;
+      height: auto;
+      padding: 10px 15px;
+      margin: 0 auto;
+      text-align: center;
+      .show_title{
+       font-size: 31px;
+      }
+      .show_text{
+        border-top: 1px solid #8888;
+        min-height: 460px;
+        padding: 10px 17px;
+        margin: 5px 0 0;
+        font-size: 19px;
+        text-align: left;
+      }
+    }
+  }
+  .comment_area{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #8888;
+    margin: 20px 0;
+    .comments{
+      .comment{
+        display: flex;
+        margin: 0 0 20px;
+        position: relative;
+        &__others_image{
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          background-color: whitesmoke;
+        }
+        &__contents{
+          display: block;
+          position: absolute;
+          left: 65px;
+          top: 15px;
+          .c_content{
+            padding: 8px 10px;
+            border-radius: 10px;
+            width: 550px;
+            background-color: whitesmoke;
+          }
+          .c_date{
+            color: #888;
+            font-size: 13px;
+            margin: 10px;
+          }
+        }
+      }
+    }
+    &__input_box{
+      display: flex;
+      .your_image{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: whitesmoke;
+      }
+      .c_input{
+        margin: 5px 15px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        max-width: 700px;
+        background-color: whitesmoke;
+      }
+    }
   }
 }

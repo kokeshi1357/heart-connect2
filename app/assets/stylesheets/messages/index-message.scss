@@ -1,13 +1,13 @@
 .box{
- display: flex;
  width: 100vw;
  height: available;
   .box_1{
-   height: 100%;
-    width: 250px;
-    background-color: rgb(218, 218, 218);
-    color: rgb(93, 93, 93);
+    width: 200px;
+    background-color: rgba(218, 218, 218, 0.8);
+    color: #333;
     padding: 10px;
+    position: fixed;
+    top: 100px;
     .search{
       height: 25px;
       background-color: white
@@ -20,8 +20,8 @@
   .box_2{
     width: calc(100% - 250px);
     height: 100%;
+    float: right;
     .index-whole{
-      // height: 100%;
       width: 100%;
       text-align: center;
       .index-head{
@@ -35,56 +35,62 @@
         }
        }
       .index-table{
-        margin: auto 0;
-        thead{
-
-        }
-        .allbox{
-         display: block;
-         height: 100%;
-         width: 100%;
-         .message-box{
-          padding: 10px;
-          position: relative;
-          width: 600px;
-          height: 70px;
-          border: solid 1px #6cddff;
-          border-radius: 10px;
-          margin:  30px auto;
-          #link{
-           position: absolute;
-           top:0;
-           left: 0;
-           height: 100%;
-           width: 100%;
+        display: inline-block;
+        .message_box{
+        display: flex;
+        margin:  0 auto 50px;
+          .index_message_image{
+            width: 150px;
+            height: 100px;
           }
-          .chara{
-           float: left;
-           border-radius: 10px;
-           background-color: rgb(122, 217, 255);
-           color: white;
-           padding: 0 5px;
+          .no_image{
+            line-height: 100px;
+            border: 1px solid #8888;
+            width: 150px;
+            height: 100px;
           }
-          .name{
-           float:left;
-           margin-left: 15px;
-           font-size: 20px;
-           color: rgb(75, 75, 75);
-          }
-          .title{
-           line-height: 50px;
-           display: flex;
-           clear: both;
-           font-size: 40px;
-           color: rgb(73, 73, 73);
-           font-family: "Lucida Grande", "segoe UI", "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
-           &__call{
+          .message{
+            margin:0 0 0 15px;
+            padding: 10px;
+            position: relative;
+            width: 600px;
+            height: 70px;
+            border: solid 1px #6cddff;
+            border-radius: 10px;
+            #link{
+            position: absolute;
+            top:0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            }
+            .chara{
+            float: left;
+            border-radius: 10px;
+            background-color: rgb(122, 217, 255);
+            color: white;
+            padding: 0 5px;
+            }
+            .name{
+            float:left;
+            margin-left: 15px;
             font-size: 20px;
             color: rgb(75, 75, 75);
-            text-shadow:none;
-           }
+            }
+            .title{
+            line-height: 50px;
+            display: flex;
+            clear: both;
+            font-size: 40px;
+            color: rgb(73, 73, 73);
+            font-family: "Lucida Grande", "segoe UI", "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
+              &__call{
+              font-size: 20px;
+              color: rgb(75, 75, 75);
+              text-shadow:none;
+              }
+            }
           }
-         }
         }
       }
     }

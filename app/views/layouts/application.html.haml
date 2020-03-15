@@ -3,15 +3,24 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title HeartConnect2
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css", :rel => "stylesheet"}
+    %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"}
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js", :type => "text/javascript"}
     = csrf_meta_tags
     = csp_meta_tag
-    %script{:src => "https://code.jquery.com/jquery-2.2.4.min.js"}
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
   %body.main-body
-    %header.header
-      %h1.title
-        %a.title__link{:href => "/"} ハートコネクト
+    .header.fixed
+      .title
+        %a.title__link{:href => "/"} 　Heart Connect
+        = icon("fas", "search")
+        - if user_signed_in?
+          = link_to "#{current_user.name}", "/users/#{current_user.id}",class: "user_name"
+          - if current_user.user_image.present?
+            = image_tag current_user.user_image.url, class: "user_image"
+          - else
+            = image_tag "/assets/default.jpg", class: "user_image"
       .header__log
         - if user_signed_in?
           %label.user_nav.grid-6
@@ -23,23 +32,22 @@
             = link_to "ログイン", new_user_session_path, class: 'post',id: :post
           %label.grid-6
             = link_to "新規登録", new_user_registration_path, class: 'post'
-
     .contents
       -# = render 'layouts/notifications'
       = yield
-    %footer
-      %p.prodution
-        2020 PRODUCTION IN TECH-EXPERT.
-      .ulll
-        =link_to "https://www.facebook.com/", class: "ulll__btn ulll__btn--facebook" do
-          = icon('fab', 'facebook-square',  class: "ulll__btn--icon")
-          -# Facebook
-        =link_to "https://twitter.com/", class: "ulll__btn ulll__btn--twitter" do
-          = icon('fab', 'twitter', class: "ulll__btn--icon")
-          -# Twitter
-        =link_to "https://www.instagram.com/", class: "ulll__btn ulll__btn--instagram" do
-          = icon('fab', 'instagram', class: "ulll__btn--icon")
-          -# Instagram
+      %footer
+        .prodution
+          2020 PRODUCTION IN TECH-EXPERT.
+        .ulll
+          =link_to "https://www.facebook.com/", class: "ulll__btn ulll__btn--facebook" do
+            = icon('fab', 'facebook-square',  class: "ulll__btn--icon")
+            -# Facebook
+          =link_to "https://twitter.com/", class: "ulll__btn ulll__btn--twitter" do
+            = icon('fab', 'twitter', class: "ulll__btn--icon")
+            -# Twitter
+          =link_to "https://www.instagram.com/", class: "ulll__btn ulll__btn--instagram" do
+            = icon('fab', 'instagram', class: "ulll__btn--icon")
+            -# Instagram
 
     -# %script{src: "users.jp"}
     -# :javascript
@@ -51,4 +59,3 @@
     -#   $(this).parent().find('label').removeClass('active');
     -#     }
     -#   });
-
