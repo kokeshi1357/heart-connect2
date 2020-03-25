@@ -1,32 +1,32 @@
-= render "modules/header"
+-# = render "modules/header"
 .room_whole
   .right_room
-    .menu
-      %ul.menu__box
-        %li.user
-          = icon("far", "address-book", id: :user_icon)
-          .btn_name ユーザー情報
-        %li.bell
-          = icon("far","bell", id: :bell_icon)
-          .btn_name 通知
-        %li.comment
-          = icon("far", "comment-dots", id: :comment_icon)
-          .btn_name メッセージ
-        %li.note
-          = icon("far", "sticky-note", id: :note_icon)
-          .btn_name メモ
-      .menu__board
+    -# .menu
+    -#   %ul.menu__box
+    -#     %li.user
+    -#       = icon("far", "address-book", id: :user_icon)
+    -#       .btn_name ユーザー情報
+    -#     %li.bell
+    -#       = icon("far","bell", id: :bell_icon)
+    -#       .btn_name 通知
+    -#     %li.comment
+    -#       = icon("far", "comment-dots", id: :comment_icon)
+    -#       .btn_name メッセージ
+    -#     %li.note
+    -#       = icon("far", "sticky-note", id: :note_icon)
+    -#       .btn_name メモ
+    -#   .menu__board
     .undecided
       = form_for @dm ,html: {class: 'dm-form'} do |f|
-        = f.text_area :content, :placeholder => "メッセージを入力して下さい",class: "dm_input", cols: "40", rows:"8"
+        = f.text_area :content, :placeholder => "メッセージを入力して下さい",class: "dm_input", cols: "40", rows:"8", "data-name": "inactive"
         = f.hidden_field :room_id, :value => @room.id
-        = f.submit "投稿する", class: "send_dm", style: "border: none"
+        = f.submit "送信", class: "send_dm"
   .left_room
     - @entries.each do |e|
       - if e.user.id != current_user.id
         .anothers_name
-          = e.user.name + " さん"
-    -# dmの場所
+          = image_tag e.user.user_image.url, size: "40x40", style: "border-radius: 50%; vertical-align: middle;"
+          = link_to "#{e.user.name} さん", "/users/#{e.user.id}"
     .dm_box  
       #dms
         - if @dms.present?
@@ -34,24 +34,25 @@
             -if dm.user_id == current_user.id
               .your_dm
                 .user_name
-                  %a{:href => "/users/#{dm.user_id}"}
+                  %span
                     = dm.user.name
+                  %span.posted_date
+                    = dm.created_at.strftime('%Y/%m/%d')
                 .dm_content
-                  %span.dm_content__span  
-                    -# 改行も段落も反映する
+                  %span.dm_content__span
                     = safe_join(dm.content.split("\n"),tag(:br))
 
             - else
               .anothers_dm
                 .user_name
-                  %a{:href => "/users/#{dm.user_id}"}
+                  %span
                     = dm.user.name
 
                 .dm_content
                   %span.dm_content__span
                     = safe_join(dm.content.split("\n"),tag(:br))
-      .bottom
-
+        - else
+          .annotation_dm メッセージは空です
 
 -# %h1 ダイレクトメッセージ
 -# %h4 参加者

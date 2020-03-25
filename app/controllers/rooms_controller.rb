@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
  before_action :authenticate_user!
- layout 'index'
 
  def create
   @room = Room.create

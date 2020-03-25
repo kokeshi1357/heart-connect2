@@ -1,6 +1,18 @@
 = form_for @message do |f|
   .message-side
-    = f.submit 'Send', class: "new_msg_send"
+    %ul.msg_menu
+      %li
+        %button{type: "submit", class: "new_msg_send"}
+          = icon("fas","paper-plane")
+      %li
+        = icon("fas","paperclip")
+      %li
+        = icon("fas","file")
+      %li
+        = icon("fas","tags")
+      %li
+        = icon("fas","trash")
+
   .message-main
     .title-area
       %span.msg_e#title_error
@@ -9,17 +21,29 @@
       %span.img-area__annotation 画像は5枚まで入力できます
       .img-area__menu
         = f.fields_for :images do |img|
-          %label#msg-img-box{for: "message_images_attributes_0_img_src"}
-            .push_btn#add-img 追加
           .js-file_group{"data-index" => "#{img.index}"}
             = img.file_field :img_src, class: 'js-file'
-          .push_btn#delete-img{name: ""}
-            選択
-          .push_btn#done-img
-            削除
+        - if @images.length == 5
+          #msg-img-box
+            #add-img.push_btn 追加
+        - else
+          %label#msg-img-box{for: "message_images_attributes_#{@images.length}_img_src"}
+            .push_btn#add-img 追加
+        .push_btn#delete-img{name: ""}
+          選択
+        .push_btn#done-img
+          削除
       .img-area__box
-      = icon("fas", "camera", class: "camera")
+        - @images.each_with_index do |img, idx|
+          .img_wrapper
+            %a.expansion{"data-lightbox": "group", href: img.img_src.url}
+              %img.prev_img{"data-index": idx, src: img.img_src, id: ""}
+            = icon('fas','check-circle', class: 'check_icon')
+           
+      = icon("fas", "image", class: "photo")
     .detail-area
       %span.msg_e#detail_error
       = f.text_area :body,placeholder: "テキスト："
-      .text_reset_btn リセット
+      %button.text_reset_btn{type: "button"} リセット
+    - @delete_array = []
+    = hidden_field_tag :delete_ids, @delete_array

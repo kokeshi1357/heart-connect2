@@ -4,22 +4,82 @@
   display: flex;
   justify-content: space-between;
   .message-side{
-    height: 500px;
+    height: 540px;
     width: 18%;
     min-width: 140px;
-    background-color: #42c8ff;
+    background-color: #00d0ff30;
     margin: 0 20px 0 0;
     box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
     border-radius: 5px;
+    text-align: center;
     ul.msg_menu{
-      i{
-        font-size: 90px;
-        margin: 15px auto 0;
+      height: fit-content;
+      margin: 11% 0 0;
+      li{
+        height: 100px;
+        button{
+          background: none;
+          border: none;
+          outline: none;
+        }
+        i{
+        line-height: 100px;
+        font-size: 30px;
+          &:hover{
+            font-size: 55px;
+            transition: all 0.2s ease-out;
+          }
+        }
       }
     }
+
+    // ↓↓ 無限スクロールを導入予定
+    // overflow: hidden;
+    // .scroll-wrapp{
+    //  margin: 0 0 0 -50px;
+    //  width: 260px;
+    //  height: 450px;
+    //  overflow: scroll;
+    //   ul.msg_menu{
+    //     width: fit-content;
+    //     margin: auto;
+    //     .l3{
+    //       height: 100px;
+    //       margin: 25px 0;
+    //     }
+    //     .l2{
+    //       height: 60px;
+    //     }
+    //     .l1{
+    //       height: 30px;
+    //       margin: 35px 0;
+    //     }
+    //     li{
+    //      text-align: center;
+    //      width: 90px;
+    //      margin: auto ;
+    //       .l{
+    //       font-size: 90px;
+    //       line-height: 90px;
+    //       }
+    //       .ll{
+    //         font-size: 60px;
+    //         opacity: 0.8;
+    //         color: #333;
+    //         line-height: 60px;
+    //       }
+    //       .lll{
+    //         font-size: 30px;
+    //         opacity: 0.6;
+    //         color: #333;
+    //         line-height: 30px;
+    //       }
+    //     }
+    //   }
+    // }
   }
   .message-main{
-    background-color: white;
+    background-color: #ffffff60;
     width: 70%;
     min-width: 550px;
     padding: 40px 30px 25px;
@@ -38,6 +98,7 @@
         outline: none;
         color: #444;
         text-align: center;
+        background-color: transparent;
         &::placeholder{
           font-size: 18px;
           position: relative;
@@ -53,8 +114,8 @@
       position: relative;
       &__annotation{
         position: absolute;
-        top: -21px;
-        left: 26%;
+        top: -20px;
+        right: 0;
         font-size: 14px;
       }
       &__menu{
@@ -143,14 +204,14 @@
           }
         }
       }
-      i.camera{
-        font-size: 25px;
-        background-color: #d4d4d4ab;
-        border-radius: 50%;
-        padding: 15px;
+      i.photo{
+        font-size: 30px;
+        border-radius: 5px;
+        color: white;
+        opacity: 0.9;
         position: absolute;
-        top: -19px;
-        right: -14px;
+        top: -1px;
+        right: 2px;
       }
     }
     .detail-area{
@@ -165,6 +226,7 @@
         width: 100%;
         border: none;
         outline: none;
+        background-color: transparent;
         &::placeholder{
           font-size: 15px;
         }

@@ -1,90 +1,104 @@
 .room_whole{
  font-family: "Lucida Grande", "segoe UI", "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", Meiryo, Arial, sans-serif;
- height: 84vh;
+ padding: 30px 60px;
+ height: 615px;
+ min-width: 980px;
  display: flex;
+ justify-content: space-between;
   .right_room{
-   width: 45%;
-   padding: 20px 15px 0 25px;
-    .menu{
-     width: 100%;
-     height: 31%;
-     margin: 0 0 8px;
-     display: flex;
-      .menu__box{
-       height: 100%;
-       width: 43%;
-       margin: 0 8px 0 0;
-       border-radius: 5px;
-       display: flex;
-       flex-wrap: wrap;
-       li{
-        height: 47%;
-        width: 46%;
-        background-color: white;
-        border-radius: 5px;
-        text-align: center;
-        i{
-         font-size: 70px;
-         color: steelblue;
-        }
-        .btn_name{
-         font-size: 13px;
-         background-color: steelblue;
-         color: white;
-         position: relative;
-         bottom: -4px;
-         border: 2px solid white;
-         border-top: none;
-         border-radius: 0 0 5px 5px;
-        }
-       } 
-       .user{
-        padding: 5px 0 0;
-        margin: 0 5px 5px 0;
-       }
-       .bell{
-        padding: 5px 0 0;
-       }
-       .note{
-        margin: 0 0 0 5px;
-       }
-      }
-      .menu__board{
-       height: 98%;
-       width: 57%;
-       border-radius: 5px;
-       border: dotted 2px white;
-      }
-    }
+   width: 35%;
+   padding: 20px 25px 0;   
+    // .menu{
+    //  width: 100%;
+    //  height: 31%;
+    //  margin: 0 0 8px;
+    //  display: flex;
+    //   .menu__box{
+    //    height: 100%;
+    //    width: 43%;
+    //    margin: 0 8px 0 0;
+    //    border-radius: 5px;
+    //    display: flex;
+    //    flex-wrap: wrap;
+    //    li{
+    //     height: 47%;
+    //     width: 46%;
+    //     background-color: white;
+    //     border-radius: 5px;
+    //     text-align: center;
+    //     i{
+    //      font-size: 70px;
+    //      color: steelblue;
+    //     }
+    //     .btn_name{
+    //      font-size: 13px;
+    //      background-color: steelblue;
+    //      color: white;
+    //      position: relative;
+    //      bottom: -4px;
+    //      border: 2px solid white;
+    //      border-top: none;
+    //      border-radius: 0 0 5px 5px;
+    //     }
+    //    } 
+    //    .user{
+    //     padding: 5px 0 0;
+    //     margin: 0 5px 5px 0;
+    //    }
+    //    .bell{
+    //     padding: 5px 0 0;
+    //    }
+    //    .note{
+    //     margin: 0 0 0 5px;
+    //    }
+    //   }
+    //   .menu__board{
+    //    height: 98%;
+    //    width: 57%;
+    //    border-radius: 5px;
+    //    border: dotted 2px white;
+    //   }
+    // }
     .undecided{
-     width: 100%;
-     height: 68.5%;
-     background-color: white;
-     border-radius: 5px;
-     position: relative;
+      width: 100%;
+      height: 300px;
+      background-color: #00d0ff1f;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
+      display: flex;
       .dm-form{
-       position: absolute;
-       bottom: 30px;
-       text-align: right;
-       padding: 0 38px 0 0;
+        bottom: 30px;
+        text-align: right;
+        width: 90%;
+        margin: auto;
+        font-family: sans-serif;
         .dm_input{
-         border: none;
-         border: solid 1px skyblue;
-         margin: 0 10px 0 0;
-         overflow: visible;
-         outline: none;
+          border: none;
+          margin: 0 10px 0 0;
+          overflow: visible;
+          outline: none;
+          width: 100%;
+          resize: none;
+          border-radius: 5px;
+          padding: 3px;
+          background-color: #ffffff78;
           &::placeholder{
             color: #888;
           }
           &:focus{
-           border: outset thick skyblue;
+            margin: -1px;
+            border: 1px solid #49c0f1;
           }
         }
         .send_dm{
-         font-size: 18px;
-         margin: 0 8px;
-         padding: 5px 10px;
-         color: steelblue;
+          border: none;
+          font-size: 17px;
+          margin: 5px 8px 0;
+          padding: 5px 13px;
+          color: #fff;
+          background-color: #a6a9ab;
+          border-radius: 3px;
+          outline: none;
          &:hover{
           text-decoration: underline;
           opacity: 0.8;
@@ -95,48 +109,81 @@
   }
   .left_room{
    width: 55%;
+   height: fit-content;
    text-align: center;
+   box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
+   border-radius: 5px;
    .anothers_name{
-    color: skyblue;
-    background-color: white;
-    font-size: 35px;
+    background-color: #ffffff8c;
     border-bottom: 2px solid steelblue;
+    border-radius: 5px 5px 0 0;
+    padding: 7px 0;
+    a{
+      text-decoration: none;
+      font-size: 26px;
+      font-family: sans-serif;
+      color: #585858;
+      vertical-align: middle;
+      margin: 0 0 0 5px;
+      &:hover{
+       opacity: 0.8;
+      }
+    }
    }
    .dm_box{
     width: 100%;
-    height: 91.5%;
-    background-color: skyblue;
+    min-height: 400px;
+    max-height: 570px;
+    background-color: #00d0ff1f;
     display: block;
     overflow: scroll;
     padding: 10px 0 0;
+    cursor: default;
      #dms{
+      font-family: sans-serif;
       .your_dm{
-       text-align: left;
-       margin:0 15px 10px;
+        border-radius: 3px;
+        text-align: left;
+        margin: 0 20px 15px;
+        background-color: #fbfbfb9e;
+    
       }
       .anothers_dm{
-       text-align: right;
-       margin:0 15px 10px;
+        border-radius: 3px;
+        text-align: left;
+        margin: 0 20px 15px;
+        background-color: #fbfbfb9e;
+    
       }
       .user_name{
-       margin: 0 8px;
-        a{
-         color:#333;
-         text-decoration: none;
-         &:hover{
-          opacity: 0.7;
-         }
+        margin: 0;
+        padding: 5px 8px 3px;
+        line-height: unset;
+        color: #555;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        .posted_date{
+          margin: 0 30px;
+          font-weight: lighter;
+          color: #888;
+          font-style: italic;
         }
       }
       .dm_content{
        display: inline-flex;
-       &__span{
-        margin: 5px 0 0;
-        padding: 8px 10px;
-        max-width: 350px;
-        background-color: white;
-        border-radius: 8px;
-       }
+        &__span{
+          padding: 0 18px 7px;
+          max-width: 350px;
+          border-radius: 8px;
+          font-size: 16px;
+        }
+      }
+      .annotation_dm{
+        margin: 170px 0 0;
+        font-size: 18px;
+        color: #666;    
       }
      }
    }

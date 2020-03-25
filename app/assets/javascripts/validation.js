@@ -71,7 +71,7 @@ $(function(){
 
 
  // 投稿画面
-  $('input:submit[class="new_msg_send"]').click(function(){
+  $('button:submit[class="new_msg_send"]').click(function(){
   if(!msg_input_check()){
     return false;
   }

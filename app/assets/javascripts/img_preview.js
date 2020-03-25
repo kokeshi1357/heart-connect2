@@ -163,6 +163,16 @@ $(function(){
         $(img).parent().parent().remove();
         const num = $(img).data('index');
         $(`.js-file_group[data-index="${num}"]`).remove();
+        //既存の画像を削除(編集)
+        var delete_id = $(`#message_images_attributes_${num}_id`).val();
+        var delete_whole = $('#delete_ids').val();
+        if(delete_whole == ""){
+          $('#delete_ids').val(delete_id);
+        }else if(delete_id != undefined){
+          $('#delete_ids').val(`${delete_whole} ${delete_id}`);
+        };
+        $(`#message_images_attributes_${num}_id`).remove();
+        console.log(delete_whole);
       });
       // 新しいfile_fieldを最後尾にセット(プレビューが５つあった & 入力欄が残っている時)
       if (prev.length == 5){

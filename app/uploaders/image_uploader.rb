@@ -47,7 +47,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
   process resize_to_fit: [500, 450]
-  
+
   # 保存形式をJPGにする
   # process :convert => 'jpg'
 

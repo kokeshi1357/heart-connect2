@@ -3,10 +3,13 @@ class MessagesController < ApplicationController
   before_action :set_message_user, only: [:show]
 
   def index
-    @messages = Message.includes(:user).order(id: "DESC")  # .order("created_at DESC").page(params[:page]).per(5)
+    @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)  # .order("created_at DESC")
   end
 
   def show
+    @comment = Comment.new
+    @comments = @message.comments.includes(:user).where(replied_num: 0)
+    @replied_comments = @message.comments.where.not(replied_num: 0)
   end
 
   def new
@@ -33,6 +36,13 @@ class MessagesController < ApplicationController
   end
 
   def update
+    # 削除される画像の処理
+    if params[:delete_ids] != ""
+      @ids = params[:delete_ids].split.map(&:to_i)
+      @ids.each do |id|
+        @image = @message.images.find(id).destroy
+      end
+    end
     respond_to do |format|
       if @message.update(message_params)
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
@@ -51,6 +61,7 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     def set_message

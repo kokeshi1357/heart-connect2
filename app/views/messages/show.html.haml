@@ -1,3 +1,4 @@
+- require 'fastimage'
 .box
   = render "modules/side-bar"
   .box_2
@@ -5,11 +6,16 @@
       .message_head
         .user_head
           = link_to "#{@user.name}", "/users/#{@user.id}",class: "user_head__name"
+          - if user_signed_in?
+            #user_proof{style: "display: none;"}
           - if @user.user_image.present?
             = image_tag @user.user_image.url, class: "user_image"
           - else 
             = image_tag "/assets/default.jpg", class: "user_image"
-        - if @message.user_id == current_user.id
+          .posted_date
+            = @message.created_at.strftime('%Y/%m/%d %H:%M')
+          %nobr.user_page_notice ＊ユーザー情報を観覧するにはログインが必要です
+        - if current_user.present? && @message.user_id == current_user.id
           %button.menu_box
             = icon("fas","bars")
             %ul.menu_lists
@@ -23,9 +29,14 @@
         - if @message.images.present?
           .message_contents__images
             .image_box
-              - @message.images.each do |image|
-                = image_tag image.img_src.url
+              .img_scroll_box
+                - @message.images.each_with_index do |image, idx|
+                  .img_wrap
+                    = image_tag image.img_src.url, id: "img_option_#{idx}"
             .image_lists
+              .img_portion
+                - @message.images.each_with_index do |image, idx|
+                  = image_tag image.img_src.url, id: "msg_img_#{idx}"
           .message_contents__details
             %span.show_title{style: "font-size: 25px;"}
               = @message.title
@@ -37,15 +48,72 @@
               = @message.title
             .show_text
               = safe_join(@message.body.split("\n"),tag(:br))
-      .comment_area
-        %ul.comments
-          %li.comment
-            .comment__others_image
-            .comment__contents
-              %span.c_content hello
-              .c_date
-                2020/3/5  johnさん
-        .comment_area__input_box
-          .your_image
-          %span.c_input
-            コメントを入力してください
+      .comment_section
+        - if current_user 
+          = form_with(model: [@message, @comment], local: true, class: "c_form", id: @message.user_id) do |form|
+            = form.text_area :text, placeholder: "コメントを追加", rows: "2"
+            .send_section
+              .c_checkbox
+                = form.check_box :replied_num, {class: "c_check"}
+                = label_tag :comment_replied_num, "リプライ"
+                %nobr.replied_user_info
+              = form.submit "投稿", id: "comment_submit"
+            = image_tag current_user.user_image.url, size: "45x45",class: :user_photo
+            .c_error
+            = form.text_field :comment_num, {style: "display: none;"}
+            .reply_num_box
+        - else 
+          .comment_alert *コメント投稿にはログイン/新規会員登録が必要です
+        .comment_label コメント一覧
+        .comment_area
+          %ul.comment_lists
+            - @comments.each do |comment|
+              %li.comment_box{'data-id': comment.comment_num, name: comment.user.name}
+                .c_user_info
+                  = image_tag comment.user.user_image.url, size: "20x20", class: "c_user_photo"
+                  - if comment.user_id == @message.user_id
+                    .c_host_name
+                      = link_to comment.user.name, "/users/#{comment.user_id}"
+                      = icon("fas", "user-check")
+                  - else
+                    .c_user_name
+                      = link_to comment.user.name, "/users/#{comment.user_id}"
+                %span.c_text
+                  = comment.text
+                .c_num #{comment.comment_num}.
+                .reply_menu
+                  .c_reply 返信
+                  .reply_open{"data-id": comment.comment_num}
+                    - @reply_num = 0
+                    - @replied_comments.each do |re|
+                      - if re.replied_num == comment.comment_num
+                        - @reply_num += 1
+                    - if @reply_num != 0
+                      #{@reply_num}件の返信 
+                //リプライエリア
+                %ul.reply_area{id: "area_#{comment.comment_num}"}
+                  - @replied_comments.each do |re|
+                    - if comment.comment_num == re.replied_num
+                      %li.reply_box
+                        .c_user_info
+                          = image_tag re.user.user_image.url, size: "20x20", class: "c_user_photo"
+                          - if re.user_id == @message.user_id
+                            .c_host_name
+                              = link_to re.user.name, "/users/#{re.user_id}"
+                              = icon("fas", "user-check")
+                          - else
+                            .c_user_name
+                              = link_to re.user.name, "/users/#{re.user_id}"
+                        %span.c_text
+                          = re.text
+        -# %ul.comments
+        -#   %li.comment
+        -#     .comment__others_image
+        -#     .comment__contents
+        -#       %span.c_content hello
+        -#       .c_date
+        -#         2020/3/5  johnさん
+        -# .comment_area__input_box
+        -#   .your_image
+        -#   %span.c_input
+        -#     コメントを入力してください

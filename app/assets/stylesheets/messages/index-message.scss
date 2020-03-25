@@ -57,6 +57,7 @@
             height: 70px;
             border: solid 1px #6cddff;
             border-radius: 10px;
+            background-color: #ffffff4a;
             #link{
             position: absolute;
             top:0;
@@ -140,3 +141,68 @@
     }
   }
 }
+//pagination
+.pagination{
+  margin: 0 0 20px;
+  font-weight: 900;
+  font-size: 18px;
+  color: #555;
+  .page{
+    a{
+      color: #555;
+      text-decoration: none;
+    }
+  }
+  .current{
+  }
+  .next{
+    margin: 0 0 0 5px;
+    a{
+      color: #555;
+      text-decoration: none;
+      &:after {
+        padding: 0 0 0 2px;
+        font-size: 15px;
+        font-family: "Font Awesome 5 Free";
+        content: '\f105';
+      }
+    }
+  }
+  .prev{
+    margin: 0 5px 0 0;
+    a{
+      color: #555;
+      text-decoration: none;
+      &:before {
+        padding: 0 2px 0 0;
+        font-size: 15px;
+        font-family: "Font Awesome 5 Free";
+        content: '\f104';
+      }
+    }
+  }
+  .last{
+    a{
+      color: #555;
+      text-decoration: none;
+      &:after {
+        padding: 0 0 0 2px;
+        font-size: 15px;
+        font-family: "Font Awesome 5 Free";
+        content: '\f101';
+      }
+    }
+  }
+  .first{
+    a{
+      color: #555;
+      text-decoration: none;
+      &:before {
+        padding: 0 2px 0 0;
+        font-size: 15px;
+        font-family: "Font Awesome 5 Free";
+        content: '\f100';
+      }
+    }
+  }
+ }

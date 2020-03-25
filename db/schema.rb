@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_073512) do
+ActiveRecord::Schema.define(version: 2020_03_23_132739) do
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text", null: false
+    t.integer "user_id", null: false
+    t.integer "message_id", null: false
+    t.integer "comment_num"
+    t.integer "replied_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "dms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -37,6 +47,8 @@ ActiveRecord::Schema.define(version: 2020_03_13_073512) do
     t.bigint "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "image_width"
+    t.integer "image_height"
     t.index ["message_id"], name: "index_images_on_message_id"
   end
 
@@ -46,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_03_13_073512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "trash_status"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 

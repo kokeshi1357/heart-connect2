@@ -7,12 +7,12 @@
       .index-table
         - @messages.each do |message|
           .message_box
-            -# - if message.image.present?
-            -#   .index_message_image
-            -#     = image_tag message.image.url,{style: "max-height:100px; max-width:150px;"}
-            -# - else
-            -# = image_tag message.images.first.img_src.url 
-            .no_image No Image
+            - @image = message.images[0]
+            - if @image.present?
+              .index_message_image
+                = image_tag @image.img_src.url,{style: "height:100px; width:150px;"}
+            - else
+              .no_image No Image
             .message
               = link_to '', message,id: :link
               .chara
@@ -22,6 +22,7 @@
               .title
                 %p.title__call Title：
                 = message.title
+        = paginate(@messages)
 
       -# .news
       -#   %p.pickup < 今週のPickUP >
@@ -41,36 +42,3 @@
       -#       %br 
       -#       子どもと関わるスタッフ募集！
       -#       %label 福岡県糟屋郡篠栗町萩尾、山の中の小さな学校。子ども一人ひとりの個性やペース、意欲を基に活動しています。子どもたちの気持ちややる気を育む関わりをしてくれるスタッフ求む！
-
-
-
-
-
-
-
--# .index-whole
--#   .index-head
--#     %h1.index-head__title 投稿一覧
-      
--#   %table.index-table
--#     %thead
--#       %tr
--#         %th タイトル　
--#         %th 内容
--#         %th
--#         %th
--#         %th
-
--#     %tbody
--#       - @messages.each do |message|
--#         = message.user.character
--#         = message.user.name
--#         = message.title
--#         = message.body
--#         %label.show-message
--#           =link_to 'Show', message, class: "show-message__link" 
--#           .input
--#   %br
-
-
--# = link_to '投稿する', new_message_path

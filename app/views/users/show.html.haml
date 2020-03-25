@@ -1,59 +1,56 @@
-- @chara_lists = ["患者","医者","アカデミー"]
 .mypage
-  %ul.mypage__menu
-    %li.list#user_home
-      = icon("fas", "home")
-    %li.list#profile
-      = icon("fas", "user")
-    %li.list
-      = icon("fas", "cog")
-    %li.list
-      = icon("fas", "window-restore")
-    %li.list
-      = icon("fas", "edit", class: "icon-write")
-    %li.list
-      = icon("far", "map")
-    %li.list
-      = icon("fas", "question-circle")
-    - if user_signed_in?
-      - if @user.id == current_user.id
-      - else
-        - if @isRoom == true
-          %p
-            %a{:href => "/rooms/#{@roomId}"} チャットへ
-        - else
-          = form_for @room do |f|
-            = fields_for @entry do |e|
-              = e.hidden_field :user_id, :value=> @user.id
-            = f.submit "チャットを始める"
-  .mypage__whole
-    .mypage-top
-      %span.top-text プロフィール
-    .mypage-main
-      = form_for current_user, html: {class: 'edit_user'} do |f|
-        .user-info
-          .user-info__right
-            .img-wrapper
-              - if current_user.user_image.present?
-                = image_tag current_user.user_image.url, class: "profile-img"
-              - else
-                = image_tag "/assets/default.jpg", class: "profile-img"
-              = icon("fas", "camera")
-            .introduction
-              %span 自己紹介
-              .introduction__detail 
-                = f.text_area :detail
-          .user-info__left
-            .text-box
-              %span ニックネーム
-              .user-text
-                = f.text_field :name, maxlength: 25
-            .text-box
-              %span 職業
-              .user-text
-                = f.select( :character,[["患者","患者"],["医師",'医師'],["アカデミー","アカデミー"]],selected: "#{current_user.character}")
-            = f.submit "更新する", class: "user-update"
-
+  - if @user.id == current_user.id
+    %ul.mypage__menu
+      %li.list#user_home
+        = icon("fas", "home")
+      %li.list#profile
+        = icon("fas", "user")
+      %li.list
+        = icon("fas", "cog")
+      %li.list#history
+        = icon("fas", "window-restore")
+      %li.list
+        = icon("fas", "edit", class: "icon-write")
+      %li.list
+        = icon("far", "map")
+      %li.list
+        = icon("fas", "question-circle")
+    .mypage__whole
+      .mypage-top
+        %span.top-text プロフィール
+      .mypage-main
+        = form_for current_user, html: {class: 'edit_user'} do |f|
+          .user-info
+            .user-info__right
+              .img-wrapper
+                - if current_user.user_image.present?
+                  = image_tag current_user.user_image.url, class: "profile-img"
+                - else
+                  = image_tag "/assets/default.jpg", class: "profile-img"
+                = icon("fas", "camera")
+              .introduction
+                %span 自己紹介
+                .introduction__detail 
+                  = f.text_area :detail
+            .user-info__left
+              .text-box
+                %span ニックネーム
+                .user-text
+                  = f.text_field :name, maxlength: 25
+              .text-box
+                %span 職業
+                .user-text
+                  = f.select(:character,[["患者","患者"],["医師",'医師'],["アカデミー","アカデミー"]],selected: "#{current_user.character}")
+              = f.submit "更新する", class: "user-update"
+  - else
+    - if @isRoom == true
+      %p
+        %a{:href => "/rooms/#{@roomId}"} チャットへ
+    - else
+      = form_for @room do |f|
+        = fields_for @entry do |e|
+          = e.hidden_field :user_id, :value=> @user.id
+        = f.submit "チャットを始める"
 
     //ホーム画面
     -# .mypage-top
@@ -89,28 +86,3 @@
     -#         .logo-box
     -#           = icon("fas", "question-circle")
     -#         %span.user-show-text ヘルプ
-
-
-
-
--# %h1 ユーザー詳細
--# = @user.name
--# %br
--# = @user.email
--# %br
--# - if user_signed_in?
--#   - if @user.id == current_user.id
--#     マイページ
--#     %br
--#     = link_to "編集", edit_user_path(current_user.id)
--#   - else
--#     - if @isRoom == true
--#       %p
--#         %a{:href => "/rooms/#{@roomId}"} チャットへ
--#     - else
--#       = form_for @room do |f|
--#         = fields_for @entry do |e|
--#           = e.hidden_field :user_id, :value=> @user.id
--#         = f.submit "チャットを始める"
-
--# = link_to "一覧に戻る", messages_path
