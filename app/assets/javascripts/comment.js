@@ -1,34 +1,34 @@
 $(function(){
   //コメントのhtmlを挿入する関数
   function buildComment(comment, class_name, icon_html){
-    // if (comment.replied_num == undefined){
-    //   var html =
-            // `<li class="comment_box" data-id=${comment.comment_num} name=${comment.user_name}>
-            //     <div class="c_user_info">
-            //       <img class="c_user_photo" src=${comment.image} width="20" height="20">
-            //       <div class=${class_name}>
-            //         <a href="/users/${comment.user_id}">${comment.user_name}</a>
-            //         ${icon_html}
-            //       </div>
-            //     </div>
-            //     <span class="c_text">
-            //       ${comment.text}
-            //     </span>
-            //     <div class="c_num">
-            //       ${comment.comment_num}.
-            //     </div>
-            //     <div class="reply_menu">
-            //       <div class="c_reply">
-            //         返信
-            //       </div>
-            //       <div class="reply_open2" data-id=${comment.comment_num} id="open_${comment.comment_num}" name>
+    if (comment.replied_num == undefined){
+      var html =
+            `<li class="comment_box" data-id=${comment.comment_num} name=${comment.user_name}>
+                <div class="c_user_info">
+                  <img class="c_user_photo" src=${comment.image} width="20" height="20">
+                  <div class=${class_name}>
+                    <a href="/users/${comment.user_id}">${comment.user_name}</a>
+                    ${icon_html}
+                  </div>
+                </div>
+                <span class="c_text">
+                  ${comment.text}
+                </span>
+                <div class="c_num">
+                  ${comment.comment_num}.
+                </div>
+                <div class="reply_menu">
+                  <div class="c_reply">
+                    返信
+                  </div>
+                  <div class="reply_open2" data-id=${comment.comment_num} id="open_${comment.comment_num}" name>
                     
-            //       </div>
-            //     </div>
-            //     <ul class="reply_area2" data-id=${comment.comment_num} id="area2_${comment.comment_num}"></ul>
-            // </li>`;
+                  </div>
+                </div>
+                <ul class="reply_area2" data-id=${comment.comment_num} id="area2_${comment.comment_num}"></ul>
+            </li>`;
       // コメントのhtmlをappendする
-      // $(".comment_lists").append(html);
+      $(".comment_lists").append(html);
       $('.comment_lists').animate({scrollTop: $('.comment_lists')[0].scrollHeight});
       // 非同期コメントへのリプライを開く
       $(`#open_${comment.comment_num}`).on('click', function(){
