@@ -38,6 +38,18 @@
    .new_user{
     width:100%;
     position: relative;
+    .default_show{
+      position: fixed;
+      top: 150px;
+      left: 110px;
+      display: inline-flex;
+      span{
+        margin: 0 0 0 10px;
+        line-height: 40px;
+        color: #555;
+        font-size: 14px;
+      }
+    }
     .img_title{
       display: flex;
       position: fixed;
@@ -155,6 +167,7 @@
       position: relative;
       margin:65px auto 0;
       width: 500px;
+      font-size: 17px;
       .input1{
         padding: 10px 10px 10px 130px;
         display: inline-block;

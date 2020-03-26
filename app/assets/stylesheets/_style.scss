@@ -33,7 +33,6 @@ body.main-body{
   margin: 0 5px 0 30px;
   line-height: 43px;
 }
-
 .header{
   z-index: 10;
   width: 100%;
@@ -52,7 +51,7 @@ body.main-body{
       text-decoration: none;
       line-height: 35px;
     }
-    i{
+    .search_icon{
       color: white;
       font-size: 20px;
       margin: 0 0 0 7px;
@@ -60,6 +59,16 @@ body.main-body{
       border: solid 2px white;
       border-radius: 3px;
       position: relative;
+    }
+    .sub_user_img{
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
+      background: #c5c5c5;
+      font-size: 22px;
+      text-align: center;
+      line-height: 36px;
+      color: #666;
     }
   }
   .header__log{

@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email,   presence: true
   # validates :password, presence: true, length: {minimum: 8 }
 
-  has_many :message, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :dms, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :comments, dependent: :destroy

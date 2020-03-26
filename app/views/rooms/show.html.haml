@@ -1,21 +1,5 @@
--# = render "modules/header"
 .room_whole
   .right_room
-    -# .menu
-    -#   %ul.menu__box
-    -#     %li.user
-    -#       = icon("far", "address-book", id: :user_icon)
-    -#       .btn_name ユーザー情報
-    -#     %li.bell
-    -#       = icon("far","bell", id: :bell_icon)
-    -#       .btn_name 通知
-    -#     %li.comment
-    -#       = icon("far", "comment-dots", id: :comment_icon)
-    -#       .btn_name メッセージ
-    -#     %li.note
-    -#       = icon("far", "sticky-note", id: :note_icon)
-    -#       .btn_name メモ
-    -#   .menu__board
     .undecided
       = form_for @dm ,html: {class: 'dm-form'} do |f|
         = f.text_area :content, :placeholder => "メッセージを入力して下さい",class: "dm_input", cols: "40", rows:"8", "data-name": "inactive"
@@ -25,7 +9,10 @@
     - @entries.each do |e|
       - if e.user.id != current_user.id
         .anothers_name
-          = image_tag e.user.user_image.url, size: "40x40", style: "border-radius: 50%; vertical-align: middle;"
+          - if e.user.user_image.present?
+            = image_tag e.user.user_image.url, size: "40x40", style: "border-radius: 50%; vertical-align: middle;"
+          - else
+            = image_tag "/assets/default.jpg", size: "40x40", style: "border-radius: 50%; vertical-align: middle;"
           = link_to "#{e.user.name} さん", "/users/#{e.user.id}"
     .dm_box  
       #dms
@@ -34,10 +21,10 @@
             -if dm.user_id == current_user.id
               .your_dm
                 .user_name
-                  %span
-                    = dm.user.name
+                  %span.your_name
+                    = dm.user.name + ":"
                   %span.posted_date
-                    = dm.created_at.strftime('%Y/%m/%d')
+                    = dm.created_at.strftime('%Y/%m/%d %H:%M')
                 .dm_content
                   %span.dm_content__span
                     = safe_join(dm.content.split("\n"),tag(:br))
@@ -46,30 +33,11 @@
               .anothers_dm
                 .user_name
                   %span
-                    = dm.user.name
-
+                    = dm.user.name + ":"
+                  %span.posted_date
+                    = dm.created_at.strftime('%Y/%m/%d %H:%M')
                 .dm_content
                   %span.dm_content__span
                     = safe_join(dm.content.split("\n"),tag(:br))
         - else
           .annotation_dm メッセージは空です
-
--# %h1 ダイレクトメッセージ
--# %h4 参加者
--# - if @dms.present?
--#   - @dms.each do |dm|
--#     %strong= dm.content
--#     %small
--#       by
--#       %strong
--#         %a{:href => "/users/#{dm.user_id}"}
--#           = dm.user.name
--#           さん
--# - else
--#   %h3.text-center メッセージはまだありません
--# = form_for @dm do |f|
--#   = f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70
--#   = f.hidden_field :room_id, :value => @room.id
--#   %br/
--#   = f.submit "投稿する"
--# = link_to "一覧に戻る", messages_path

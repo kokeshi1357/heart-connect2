@@ -15,7 +15,7 @@
     .header.fixed
       .title
         %a.title__link{:href => "/"} 　Heart Connect
-        = icon("fas", "search")
+        = icon("fas", "search", class: 'search_icon')
         - if user_signed_in?
           = link_to "#{current_user.name}", "/users/#{current_user.id}",class: "user_name"
           - if current_user.user_image.present?

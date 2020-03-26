@@ -69,7 +69,13 @@ $(function(){
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5];
   lastIndex = $('.js-file_group:last').data('index');
-  fileIndex.splice(0, lastIndex);
+  if (lastIndex == 5){
+    fileIndex.splice(0, lastIndex, 5,6);
+    $('.js-file_group:last').remove();
+  }else{
+    fileIndex.splice(0, lastIndex);
+  }
+  console.log(fileIndex);
 
   // 新規画像の処理(プレビュー/新しいinputの追加)
   $('.img-area__menu').on('change', '.js-file', function(e) {
@@ -134,7 +140,7 @@ $(function(){
       });
     };
   });
-  
+
   $('.img-area__box').on('click', '.prev_img', function(){
     var name = $('#delete-img')[0].getAttribute('name');
     if (name == "active"){
@@ -172,7 +178,6 @@ $(function(){
           $('#delete_ids').val(`${delete_whole} ${delete_id}`);
         };
         $(`#message_images_attributes_${num}_id`).remove();
-        console.log(delete_whole);
       });
       // 新しいfile_fieldを最後尾にセット(プレビューが５つあった & 入力欄が残っている時)
       if (prev.length == 5){

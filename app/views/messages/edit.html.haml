@@ -12,7 +12,6 @@
         = icon("fas","tags")
       %li
         = icon("fas","trash")
-
   .message-main
     .title-area
       %span.msg_e#title_error
@@ -33,6 +32,7 @@
           選択
         .push_btn#done-img
           削除
+        #edit_proof
       .img-area__box
         - @images.each_with_index do |img, idx|
           .img_wrapper

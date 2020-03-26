@@ -3,14 +3,14 @@
     %ul.mypage__menu
       %li.list#user_home
         = icon("fas", "home")
-      %li.list#profile
+      %li.list#profile.profile-box{"data-id": 1}
         = icon("fas", "user")
       %li.list
         = icon("fas", "cog")
-      %li.list#history
+      %li.list#history.posts-box{"data-id": 4}
         = icon("fas", "window-restore")
       %li.list
-        = icon("fas", "edit", class: "icon-write")
+        = icon("fas", "edit")
       %li.list
         = icon("far", "map")
       %li.list
@@ -22,12 +22,15 @@
         = form_for current_user, html: {class: 'edit_user'} do |f|
           .user-info
             .user-info__right
-              .img-wrapper
-                - if current_user.user_image.present?
-                  = image_tag current_user.user_image.url, class: "profile-img"
-                - else
-                  = image_tag "/assets/default.jpg", class: "profile-img"
-                = icon("fas", "camera")
+              .img-wrapper{for: 'user_user_image'}
+                %label{for: 'user_user_image'}
+                  - if current_user.user_image.present?
+                    = image_tag current_user.user_image.url, class: "profile-img"
+                  - else
+                    = image_tag '', class: "profile-img", style: "display:none;"
+                    = icon("fas", "user", id: "icon_user")
+                = icon("fas", "camera", id: "camera")
+              = f.file_field :user_image, style: "display: none;"
               .introduction
                 %span 自己紹介
                 .introduction__detail 
@@ -43,14 +46,52 @@
                   = f.select(:character,[["患者","患者"],["医師",'医師'],["アカデミー","アカデミー"]],selected: "#{current_user.character}")
               = f.submit "更新する", class: "user-update"
   - else
-    - if @isRoom == true
-      %p
-        %a{:href => "/rooms/#{@roomId}"} チャットへ
-    - else
-      = form_for @room do |f|
-        = fields_for @entry do |e|
-          = e.hidden_field :user_id, :value=> @user.id
-        = f.submit "チャットを始める"
+    -# 他ユーザーの情報
+    .other_info_left
+      .user_profile
+        - if @user.user_image.present?
+          = image_tag @user.user_image.url, size: "200x200", style: "border-radius: 50%;"
+        - else
+          .no-img
+            = icon("fas", "user")
+        .prof_info
+          .prof_info__list
+            %div ニックネーム
+            %span
+              = @user.name
+          .prof_info__list
+            %div 職業
+            %span
+              = @user.character
+      .user_intro
+        .intro 自己紹介
+        .intro_box
+          = @user.detail
+    .other_info_right
+      .post_title 投稿リスト
+      %ul.other_posts
+        - @user.messages.each_with_index do |msg, idx|
+          = link_to "/messages/#{msg.id}", id: "link_#{idx}" do
+            %li.post
+              .post__title
+                = msg.title
+              .img_and_date
+                .images
+                  - msg.images.each do |img|
+                    = image_tag img.img_src.url, size: "22x22",class: "post_msg_img"
+                .date
+                  = msg.created_at.strftime('%Y/%m/%d')
+              .post__body
+                = safe_join(msg.body.split("\n"),tag(:br))
+      .contact_menu
+        - if @isRoom == true
+          = link_to "メッセージを送る", "/rooms/#{@roomId}", id: "send_dm"
+        - else
+          = form_for @room do |f|
+            = fields_for @entry do |e|
+              = e.hidden_field :user_id, :value=> @user.id
+            = f.submit "メッセージを送る",id: "send_dm"
+    
 
     //ホーム画面
     -# .mypage-top

@@ -62,6 +62,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def trash_update
+    @message.update(trash_status: 1)
+    redirect_to root_path
+  end
 
   private
     def set_message

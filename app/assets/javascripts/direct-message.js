@@ -4,8 +4,8 @@ $(function(){
       var html =
        `<div class="your_dm">
           <div class="user_name">
-            <span>
-              ${dm.user_name}
+            <span class="your_name">
+              ${dm.user_name}:
             </span>
             <span class="posted_date">
               ${dm.created_at}

@@ -22,7 +22,7 @@
               %li
                 = link_to '編集する', edit_message_path(@message), class: "show-menu"
               %li
-                = link_to '削除する', message_path(@message.id), method: :delete,class: "show-menu"
+                = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu"
               %li
                 = link_to '戻る', messages_path, class: "show-menu"
       .message_contents
@@ -58,7 +58,10 @@
                 = label_tag :comment_replied_num, "リプライ"
                 %nobr.replied_user_info
               = form.submit "投稿", id: "comment_submit"
-            = image_tag current_user.user_image.url, size: "45x45",class: :user_photo
+            - if current_user.user_image.present?
+              = image_tag current_user.user_image.url, size: "45x45",class: :user_photo
+            - else
+              = image_tag "/assets/default.jpg", size: "45x45",class: :user_photo
             .c_error
             = form.text_field :comment_num, {style: "display: none;"}
             .reply_num_box

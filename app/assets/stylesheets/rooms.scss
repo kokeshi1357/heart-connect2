@@ -8,57 +8,6 @@
   .right_room{
    width: 35%;
    padding: 20px 25px 0;   
-    // .menu{
-    //  width: 100%;
-    //  height: 31%;
-    //  margin: 0 0 8px;
-    //  display: flex;
-    //   .menu__box{
-    //    height: 100%;
-    //    width: 43%;
-    //    margin: 0 8px 0 0;
-    //    border-radius: 5px;
-    //    display: flex;
-    //    flex-wrap: wrap;
-    //    li{
-    //     height: 47%;
-    //     width: 46%;
-    //     background-color: white;
-    //     border-radius: 5px;
-    //     text-align: center;
-    //     i{
-    //      font-size: 70px;
-    //      color: steelblue;
-    //     }
-    //     .btn_name{
-    //      font-size: 13px;
-    //      background-color: steelblue;
-    //      color: white;
-    //      position: relative;
-    //      bottom: -4px;
-    //      border: 2px solid white;
-    //      border-top: none;
-    //      border-radius: 0 0 5px 5px;
-    //     }
-    //    } 
-    //    .user{
-    //     padding: 5px 0 0;
-    //     margin: 0 5px 5px 0;
-    //    }
-    //    .bell{
-    //     padding: 5px 0 0;
-    //    }
-    //    .note{
-    //     margin: 0 0 0 5px;
-    //    }
-    //   }
-    //   .menu__board{
-    //    height: 98%;
-    //    width: 57%;
-    //    border-radius: 5px;
-    //    border: dotted 2px white;
-    //   }
-    // }
     .undecided{
       width: 100%;
       height: 300px;
@@ -146,14 +95,15 @@
         text-align: left;
         margin: 0 20px 15px;
         background-color: #fbfbfb9e;
-    
+        .your_name{
+          color: #31bbf3;
+        }
       }
       .anothers_dm{
         border-radius: 3px;
         text-align: left;
         margin: 0 20px 15px;
         background-color: #fbfbfb9e;
-    
       }
       .user_name{
         margin: 0;

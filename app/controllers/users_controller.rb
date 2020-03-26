@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
  before_action :set_user, only: [:show, :edit]
-
  def show
   if user_signed_in?
     @messages = Message.where(user_id: current_user.id, trash_status: nil).order(created_at: "DESC")

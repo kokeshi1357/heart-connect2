@@ -29,6 +29,7 @@ $(function(){
             </li>`;
       // コメントのhtmlをappendする
       $(".comment_lists").append(html);
+      $('.comment_lists').animate({scrollTop: $('.comment_lists')[0].scrollHeight});
       // 非同期コメントへのリプライを開く
       $(`#open_${comment.comment_num}`).on('click', function(){
         var data_id = $(this).data('id');

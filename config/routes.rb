@@ -13,8 +13,11 @@ Rails.application.routes.draw do
       get 'get_history_info', dafaults: { format: 'json'}
     end
   end
-  
+
   resources :messages do
+    member do 
+      patch 'trash_update'
+    end
     resources :comments, only: :create
   end
 

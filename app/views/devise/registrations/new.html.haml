@@ -6,8 +6,11 @@
       %h5.create-jp 新規アカウントの作成
     .account-page__inner__right
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .default_show
+          = image_tag "/assets/default.jpg", class: "user_image", size: "36x36"
+          %span ⇦ デフォルト画像
         .field-image
-          = image_tag "", class: "future_user_img" #/assets/default.jpg
+          = image_tag "", class: "future_user_img"
           .no-img
             = icon("fas", "user")
           %label.img_label{ for: "user_user_image"}
