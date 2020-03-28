@@ -14,7 +14,7 @@
   %body.main-body
     .header.fixed
       .title
-        %a.title__link{:href => "/"} 　Heart Connect
+        %a.title__link{href: root_path} 　Heart Connect
         = icon("fas", "search", class: 'search_icon')
         - if user_signed_in?
           = link_to "#{current_user.name}", "/users/#{current_user.id}",class: "user_name"

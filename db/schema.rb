@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_132739) do
+ActiveRecord::Schema.define(version: 2020_03_28_014225) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
@@ -47,18 +47,16 @@ ActiveRecord::Schema.define(version: 2020_03_23_132739) do
     t.bigint "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "image_width"
-    t.integer "image_height"
     t.index ["message_id"], name: "index_images_on_message_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "body"
+    t.integer "trash_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.integer "trash_status"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -70,6 +68,9 @@ ActiveRecord::Schema.define(version: 2020_03_23_132739) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.string "character", null: false
+    t.string "user_image"
+    t.text "detail"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -77,9 +78,6 @@ ActiveRecord::Schema.define(version: 2020_03_23_132739) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "character"
-    t.text "user_image"
-    t.text "detail"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
