@@ -38,7 +38,27 @@
 　またajax通信の使用はページ遷移の削減を促した。コメント・ダイレクトメッセージは入力後、非同期で更新される。
 マイページ画面ではメニューをクリックすると、ページを更新することなく内容は切り替わることができる。
 
+## アプリ画面
+アプリホーム
 ![heart-connect-img1](https://user-images.githubusercontent.com/59188285/78050320-06e37200-73b7-11ea-8bb0-07c44e094334.jpg)
+
+投稿画面
+![heart edit](https://user-images.githubusercontent.com/59188285/78051559-d270b580-73b8-11ea-8c1d-54a25d82e2b9.jpg)
+
+投稿詳細
+![show msg1](https://user-images.githubusercontent.com/59188285/78052665-64c58900-73ba-11ea-86e6-479876f32ffb.jpg)
+![show msg2](https://user-images.githubusercontent.com/59188285/78052722-77d85900-73ba-11ea-9bdf-caddaf157693.jpg)
+
+ダイレクトメッセージ
+![heart comment](https://user-images.githubusercontent.com/59188285/78052380-fe406b00-73b9-11ea-80cd-d3ce8e375b55.jpg)
+
+新規登録
+![sign heart](https://user-images.githubusercontent.com/59188285/78051612-e74d4900-73b8-11ea-8309-0d83f5d02b1c.jpg)
+
+マイページ画面
+![home heart](https://user-images.githubusercontent.com/59188285/78051701-09df6200-73b9-11ea-89d8-4a2d2d610ea5.jpg)
+![hiestory heart](https://user-images.githubusercontent.com/59188285/78051774-254a6d00-73b9-11ea-8049-55468926bb6c.jpg)
+![profile heart](https://user-images.githubusercontent.com/59188285/78051882-4612c280-73b9-11ea-81a6-9794f71a091f.jpg)
 
 ## 現段階の課題
 タグの種類が少ないので、今後seed.rbにてタグのバリエーションをさらに増やすだろう。
