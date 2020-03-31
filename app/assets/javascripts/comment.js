@@ -1,11 +1,16 @@
 $(function(){
   //コメントのhtmlを挿入する関数
   function buildComment(comment, class_name, icon_html){
+    if (comment.image != undefined){
+      var image = `<img class="c_user_photo" src=${comment.image} width="20" height="20">`;
+    }else{
+      var image = `<img class="comment_user_icon" src="/assets/default.jpg" width="20" height="20">`;
+    };
     if (comment.replied_num == undefined){
       var html =
             `<li class="comment_box" data-id=${comment.comment_num} name=${comment.user_name}>
                 <div class="c_user_info">
-                  <img class="c_user_photo" src=${comment.image} width="20" height="20">
+                  ${image}
                   <div class=${class_name}>
                     <a href="/users/${comment.user_id}">${comment.user_name}</a>
                     ${icon_html}
@@ -46,7 +51,7 @@ $(function(){
       var html = 
             `<li class="reply_box">
               <div class="c_user_info">
-                <img class="c_user_photo" src="${comment.image}" width="20" height="20">
+                ${image}
                 <div class=${class_name}>
                   <a href="/users/${comment.user_id}">${comment.user_name}</a>
                   ${icon_html}

@@ -25,12 +25,13 @@
                 = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu"
               %li
                 = link_to '戻る', messages_path, class: "show-menu"
-        .show_tags
-          = icon('fas', 'tags')
-          .tagtag
-            - @message.categories.each do |cat|
-              %nobr.tag
-                = cat.name
+        - if @message.categories.present?
+          .show_tags
+            = icon('fas', 'tags')
+            .tagtag
+              - @message.categories.each do |cat|
+                %nobr.tag
+                  = cat.name
       .message_contents
         - if @message.images.present?
           .message_contents__images
@@ -79,7 +80,10 @@
             - @comments.each do |comment|
               %li.comment_box{'data-id': comment.comment_num, name: comment.user.name}
                 .c_user_info
-                  = image_tag comment.user.user_image.url, size: "20x20", class: "c_user_photo"
+                  - if comment.user.user_image.present?
+                    = image_tag comment.user.user_image.url, size: "20x20", class: "c_user_photo"
+                  - else 
+                    = image_tag "/assets/default.jpg", size: "20x20",class: :comment_user_icon
                   - if comment.user_id == @message.user_id
                     .c_host_name
                       = link_to comment.user.name, "/users/#{comment.user_id}"
@@ -105,7 +109,10 @@
                     - if comment.comment_num == re.replied_num
                       %li.reply_box
                         .c_user_info
-                          = image_tag re.user.user_image.url, size: "20x20", class: "c_user_photo"
+                          - if re.user.user_image.present?
+                            = image_tag re.user.user_image.url, size: "20x20", class: "c_user_photo"
+                          - else 
+                            = image_tag "/assets/default.jpg", size: "20x20",class: :comment_user_icon
                           - if re.user_id == @message.user_id
                             .c_host_name
                               = link_to re.user.name, "/users/#{re.user_id}"
