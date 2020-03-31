@@ -6,7 +6,8 @@
   background-color: #ffffffa6;
   box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
   .message_head{
-    padding: 17px 15px;
+    position: relative;
+    padding: 17px 15px 50px;
     display: flex;
     justify-content: space-between;
     .user_head{
@@ -90,6 +91,32 @@
               color: white;
             }
           }
+        }
+      }
+    }
+    .show_tags{
+      position: absolute;
+      top: 65px;
+      display: flex;
+      i{
+        font-size: 15px;
+        color: #5dcefb;
+        line-height: 23px;
+      }
+      .tagtag{
+        height: 40px;
+        max-width: 63vw;
+        display: flex;
+        overflow: scroll;
+        margin: 0 0 0 8px;
+        .tag{
+          padding: 0 5px;
+          border: 1px solid #5dcefb;
+          border-radius: 3px;
+          color: #24badc;
+          font-size: 13px;
+          margin: 0 8px 0 0;
+          height: fit-content;
         }
       }
     }

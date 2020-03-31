@@ -15,8 +15,12 @@ Rails.application.routes.draw do
   end
 
   resources :messages do
-    member do 
+    member do
       patch 'trash_update'
+    end
+    collection do
+      get 'tag_spread', dafaults: { format: 'json'}
+      get 'tag_search', dafaults: { format: 'json'}
     end
     resources :comments, only: :create
   end

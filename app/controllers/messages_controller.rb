@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
-  before_action :set_message, except: [:index, :new, :create]
+  before_action :set_message, except: [:index, :new, :create, :tag_spread, :tag_search]
   before_action :set_message_user, only: [:show]
+  before_action :set_parents, only: [:new, :edit]
 
   def index
     @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)  # .order("created_at DESC")
@@ -20,6 +21,7 @@ class MessagesController < ApplicationController
   def edit
     @message.images.build
     @images = Image.where(message_id: @message.id)
+    @categories = @message.categories
   end
 
   def create
@@ -43,6 +45,7 @@ class MessagesController < ApplicationController
         @image = @message.images.find(id).destroy
       end
     end
+    # binding.pry
     respond_to do |format|
       if @message.update(message_params)
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
@@ -67,9 +70,29 @@ class MessagesController < ApplicationController
     redirect_to root_path
   end
 
+  def tag_spread
+    if params[:parent_id]
+      parent = Category.find(params[:parent_id])
+      @children = parent.children
+    end
+  end
+
+  def tag_search
+    if params[:tag_id]
+      tag = Category.find(params[:tag_id])
+      @messages = tag.messages.where(trash_status: nil).order(created_at: "DESC")
+    else
+      @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)
+    end
+  end
+
   private
     def set_message
       @message = Message.find(params[:id])
+    end
+    
+    def set_parents
+      @parents = Category.where(ancestry: nil)
     end
 
     def set_message_user
@@ -77,6 +100,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.require(:message).permit(:title, :body, images_attributes: [:img_src, :_destroy, :id]).merge(user_id: current_user.id)
+      params.require(:message).permit(:title, :body, images_attributes: [:img_src, :_destroy, :id], category_ids: []).merge(user_id: current_user.id)
     end
 end

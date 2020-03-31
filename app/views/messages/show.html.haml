@@ -1,6 +1,6 @@
 - require 'fastimage'
 .box
-  = render "modules/side-bar"
+  -# = render "modules/side-bar"
   .box_2
     .show_whole
       .message_head
@@ -25,6 +25,12 @@
                 = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu"
               %li
                 = link_to '戻る', messages_path, class: "show-menu"
+        .show_tags
+          = icon('fas', 'tags')
+          .tagtag
+            - @message.categories.each do |cat|
+              %nobr.tag
+                = cat.name
       .message_contents
         - if @message.images.present?
           .message_contents__images

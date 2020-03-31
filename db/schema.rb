@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_014225) do
+ActiveRecord::Schema.define(version: 2020_03_29_140455) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
@@ -60,6 +66,15 @@ ActiveRecord::Schema.define(version: 2020_03_28_014225) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "msg_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "message_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_msg_categories_on_category_id"
+    t.index ["message_id"], name: "index_msg_categories_on_message_id"
+  end
+
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -89,4 +104,6 @@ ActiveRecord::Schema.define(version: 2020_03_28_014225) do
   add_foreign_key "entries", "users"
   add_foreign_key "images", "messages"
   add_foreign_key "messages", "users"
+  add_foreign_key "msg_categories", "categories"
+  add_foreign_key "msg_categories", "messages"
 end

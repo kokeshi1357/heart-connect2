@@ -25,6 +25,7 @@
         i{
         line-height: 100px;
         font-size: 30px;
+        cursor: pointer;
           &:hover{
             font-size: 55px;
             transition: all 0.2s ease-out;
@@ -32,51 +33,6 @@
         }
       }
     }
-
-    // ↓↓ 無限スクロールを導入予定
-    // overflow: hidden;
-    // .scroll-wrapp{
-    //  margin: 0 0 0 -50px;
-    //  width: 260px;
-    //  height: 450px;
-    //  overflow: scroll;
-    //   ul.msg_menu{
-    //     width: fit-content;
-    //     margin: auto;
-    //     .l3{
-    //       height: 100px;
-    //       margin: 25px 0;
-    //     }
-    //     .l2{
-    //       height: 60px;
-    //     }
-    //     .l1{
-    //       height: 30px;
-    //       margin: 35px 0;
-    //     }
-    //     li{
-    //      text-align: center;
-    //      width: 90px;
-    //      margin: auto ;
-    //       .l{
-    //       font-size: 90px;
-    //       line-height: 90px;
-    //       }
-    //       .ll{
-    //         font-size: 60px;
-    //         opacity: 0.8;
-    //         color: #333;
-    //         line-height: 60px;
-    //       }
-    //       .lll{
-    //         font-size: 30px;
-    //         opacity: 0.6;
-    //         color: #333;
-    //         line-height: 30px;
-    //       }
-    //     }
-    //   }
-    // }
   }
   .message-main{
     background-color: #ffffff60;
@@ -89,11 +45,11 @@
       position: relative;
       border: 1px solid #b1b1b1;
       border-radius: 5px;
-      padding: 10px 20px;
+      padding: 8px 20px;
       #message_title{
-        font-size: 25px;
+        font-size: 22px;
         width: 100%;
-        height: 45px;
+        height: 35px;
         border: none;
         outline: none;
         color: #444;
@@ -107,8 +63,8 @@
       }
     }
     .img-area{
-      height: 180px;
-      margin: 35px 0;
+      height: 165px;
+      margin: 35px 0 60px;
       display: flex;
       justify-content: space-between;
       position: relative;
@@ -133,8 +89,8 @@
         //追加,選択,削除ボタンの挙動
         .push_btn{
           position: relative;
-          height: 40px;
-          line-height: 40px;
+          height: 35px;
+          line-height: 35px;
           box-shadow: 1.2px 1.2px 0 #44c7ff;
           color: #42c8ff;
           border-radius: 3px;
@@ -187,9 +143,12 @@
           height: fit-content;
           width: fit-content;
           margin: 0 4px 0 0;
-          img{
-            max-width: 360px;
-            max-height: 178px;
+          a{
+            background: #333;
+            img{
+              max-width: 360px;
+              max-height: 165px;
+            }
           }
           i{
             position: absolute;
@@ -214,42 +173,118 @@
         right: 2px;
       }
     }
-    .detail-area{
+    .tag_detail{
+      display: flex;
       position: relative;
-      border: 1px solid #b1b1b1;
-      border-radius: 5px;
-      height: 235px;
-      padding: 20px;
-      #message_body{
-        font-size: 17px;
-        height: 100%;
-        width: 100%;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        &::placeholder{
-          font-size: 15px;
+      .tag_choose{
+        height: 277px;
+        width: 120%;
+        border: 1px solid #b1b1b1;
+        border-radius: 5px;
+        margin: 0 10px 0 0;
+        .parent_list{
+          margin: 10px 10px;
+          display: flex;
+          justify-content: space-between;
+          span{
+            width: 31%;
+            text-align: center;
+            background-color: #ffffff8a;
+            border: 1px solid #00d0ffc7;
+            border-radius: 3px;
+            color: #16c7ef;
+            cursor: pointer;
+          }
+        }
+        .child_list{
+          display: flex;
+          flex-flow: wrap;
+          padding: 0 10px;
+          overflow: scroll;
+          max-height: 83%;
+          .one_tag{
+            font-size: 14px;
+            color: #555;
+            background-color: #fbfbfb8f;
+            border-radius: 5px;
+            padding: 2px 9px;
+            border: 1px solid #5dcefb;
+            margin: 0 6px 6px 0;
+            cursor: pointer;
+          }
+          .tagged{
+            background-color: #00d0ffa1;
+          }
         }
       }
-      .text_reset_btn{
-        padding: 3px 8px;
-        font-size: 15px;
+      .tag_show{
+        display: flex;
+        color: #444;
         position: absolute;
-        right: 10px;
-        bottom: 8px;
-        background-color: #42c8ff;
-        color: #fff;
-        border-radius: 3px;
-        outline: none;
-        border: none;
-        box-shadow: 2px 2px 0 #46a7d0;
-        &:hover {
-          background-color: #5dcefb;        
+        top: -40px;
+        left: 5px;
+        .tag_text{
+          margin: 0 10px 0 0;
         }
-        &:active {
-          bottom: 6px;
-          right: 8px;
-          box-shadow: none;
+        .tag_lists{
+          display: flex;
+          overflow: scroll;
+          max-width: 52vw;
+          height: 39px;      
+          .tag{
+            height: fit-content;
+            background-color: #00d0ffb0;
+            color: #fff;
+            border-radius: 20px 8px 8px 20px;
+            padding: 0 4px;
+            display: flex;
+            margin: 0 10px 0 0;
+            .tag_off{
+              font-size: 17px;
+              padding: 0 3px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .detail-area{
+        position: relative;
+        border: 1px solid #b1b1b1;
+        border-radius: 5px;
+        height: 235px;
+        width: 100%;
+        padding: 20px;
+        #message_body{
+          font-size: 17px;
+          height: 100%;
+          width: 100%;
+          border: none;
+          outline: none;
+          background-color: transparent;
+          &::placeholder{
+            font-size: 15px;
+          }
+        }
+        .text_reset_btn{
+          padding: 3px 8px;
+          font-size: 15px;
+          position: absolute;
+          right: 10px;
+          bottom: 8px;
+          background-color: #42c8ff;
+          color: #fff;
+          border-radius: 3px;
+          outline: none;
+          border: none;
+          box-shadow: 2px 2px 0 #46a7d0;
+          &:hover {
+            background-color: #5dcefb;        
+          }
+          &:active {
+            bottom: 6px;
+            right: 8px;
+            box-shadow: none;
+          }
         }
       }
     }

@@ -7,7 +7,7 @@
   &__menu{
    width: 70px;
    text-align: center;
-   border-right: 1px solid #f3f3f3;
+   border-right: 1px solid #88888829;
    background-color: #ffffff70;
     li{
      cursor: pointer;
@@ -40,7 +40,7 @@
    width: 870px;
     .mypage-top{
      height: 56px;
-     border-bottom: 1px solid #f3f3f3;
+     border-bottom: 1px solid #88888829;
      text-align: center;
      span.top-text{
        font-size: 25px;
@@ -53,13 +53,13 @@
      //ホーム画面
       ul.menu-lists{
        display: flex;
-       border-bottom: #f3f3f3 1px solid;
+       border-bottom: #88888829 1px solid;
        li{
          width: 290px;
-         height: 265px;
+         height: 266px;
          text-align: center;
          position: relative;
-         border-right: #f3f3f3 1px solid;
+         border-right: #88888829 1px solid;
           &:hover{
            background-color: #f6f6f6;
           }
@@ -129,7 +129,7 @@
                 line-height: 200px;
                 border-radius: 50%;
                 background-color: #d6d6d6;
-                color: #777;
+                color: #999;
               }
              }
              #camera{
@@ -203,6 +203,7 @@
             bottom: 40px;
             right: 30px;
             cursor: pointer;
+            border: none;
             outline: none;
            }
           }

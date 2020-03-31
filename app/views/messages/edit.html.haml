@@ -9,7 +9,7 @@
       %li
         = icon("fas","file")
       %li
-        = icon("fas","tags")
+        = icon("fas","tags", class: "tag_push")
       %li
         = icon("fas","trash")
   .message-main
@@ -38,12 +38,33 @@
           .img_wrapper
             %a.expansion{"data-lightbox": "group", href: img.img_src.url}
               %img.prev_img{"data-index": idx, src: img.img_src, id: ""}
-            = icon('fas','check-circle', class: 'check_icon')
-           
+            = icon('fas','check-circle', class: 'check_icon')    
       = icon("fas", "image", class: "photo")
-    .detail-area
-      %span.msg_e#detail_error
-      = f.text_area :body,placeholder: "テキスト："
-      %button.text_reset_btn{type: "button"} リセット
+
+    .tag_detail
+      .tag_choose
+        .parent_list
+          - @parents.each do |parent|
+            %span.parent{id: "parent_#{parent.id}", 'data-id': parent.id}
+              = parent.name
+        .child_list
+      .tag_show
+        .tag_text
+          %nobr 
+            = icon('fas', 'tag')
+            タグ:
+        .tag_lists
+          - @categories.each do |cat|
+            .tag
+              .tag_off{"data-id": cat.id} ×
+              %nobr.tag_name{id: "tag_num_#{cat.id}"}
+                = cat.name
+            %input{:id => "tag_num_#{cat.id}", :name => "message[category_ids][]", :type => "hidden", :value => "#{cat.id}"}/
+
+      .detail-area
+        %span.msg_e#detail_error
+        = f.text_area :body,placeholder: "テキスト："
+        %button.text_reset_btn{type: "button"} リセット
+    //削除画像用
     - @delete_array = []
     = hidden_field_tag :delete_ids, @delete_array

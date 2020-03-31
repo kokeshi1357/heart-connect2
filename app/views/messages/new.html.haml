@@ -9,7 +9,7 @@
       %li
         = icon("fas","file")
       %li
-        = icon("fas","tags")
+        = icon("fas","tags", id: "tag_push")
       %li
         = icon("fas","trash")
 
@@ -31,23 +31,19 @@
             削除
       .img-area__box
       = icon("fas", "image", class: "photo")
-    .detail-area
-      %span.msg_e#detail_error
-      = f.text_area :body,placeholder: "テキスト："
-      %button.text_reset_btn{type: "button"} リセット
-
-// ↓↓ 無限スクロールを導入予定
--# .scroll-wrapp
--#   %ul.msg_menu
--#     %li.l1
--#       = icon("fas","paper-plane", class: "lll")
--#     %li.l2
--#       = icon("fas","paperclip", class: "ll")
--#     %li.l3
--#       = icon("fas","file", class: "l")
--#     %li.l2
--#       = icon("fas","tags", class: "ll")
--#     %li.l1
--#       = icon("fas","trash", class: "lll")
--# %p#loading
--#   %i.fas.fa-bell.faa-spin.animated{style: "font-size: 50px;"}
+    .tag_detail
+      .tag_choose
+        .parent_list
+          - @parents.each do |parent|
+            %span.parent{id: "parent_#{parent.id}", 'data-id': parent.id}
+              = parent.name
+        .child_list
+      .tag_show
+        .tag_text
+          = icon('fas', 'tag')
+          タグ:
+        .tag_lists
+      .detail-area
+        %span.msg_e#detail_error
+        = f.text_area :body,placeholder: "テキスト："
+        %button.text_reset_btn{type: "button"} リセット

@@ -32,6 +32,10 @@ body.main-body{
   font-size: 18px;
   margin: 0 5px 0 30px;
   line-height: 43px;
+  &:hover{
+    color: #138fc1;
+    transition: all ease-out 0.2s;
+  }
 }
 .header{
   z-index: 10;

@@ -1,6 +1,11 @@
 $(function(){
   //ホームメニューのhtml
   function buildUserHome(img){
+    if (img == ''){
+      var img_html = `<i class="fas fa-user"></i>`;
+    }else{
+      var img_html = `<img class="profile-box__img" src=${home_img}></img>`;
+    };
     var html =
      `<div class="mypage-top">
         <span class="top-text">kenk</span>
@@ -9,7 +14,7 @@ $(function(){
         <ul class="menu-lists margin_bottom">
           <li class="profile-box list-box" data-id="1">
             <div class="logo-box">
-              <img class="profile-box__img" src=${img}>
+              ${img_html}
             </div>
           <div class="user-show-text">プロフィール</div>
           </li>
@@ -207,7 +212,6 @@ $(function(){
   //以下各メニューがクリックされたときの画面表示
   
   var home_img = $('.profile-img').attr('src')
-  console.log(home_img)
   //ホーム
   $('#user_home').click(function(){
     $(".mypage__whole").empty();
