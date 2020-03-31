@@ -67,39 +67,97 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|character|string|null: false|
+|user_image|string||
+|detail|text||
 |email|string|null: false|
 |encrypted_password|string|null: false|
-|character|string||
+
 ### Association
-- has_many :items
+- has_many :messages, dependent: :destroy
+- has_many :dms, dependent: :destroy
+- has_many :entries, dependent: :destroy
+- has_many :comments, dependent: :destroy
 
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |title|string||
 |body|text||
-|image|text||
-|user_id|bigint|foreign_key: truef|
+|trash_status|integer||
+|user_id|bigint|foreign_key: true|
 ### Association
-- has_many :items
+- has_many :comments, dependent: :destroy
+- has_many :msg_categories
+- has_many :categories, through: :msg_categories
+- has_many :images, dependent: :destroy
+- belongs_to :user
+
+## imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|img_src|text||
+|message_id|bigint|foreign_key: true|
+### Association
+- mount_uploader :img_src, ImageUploader
+- belongs_to :message
 
 ## roomsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true|  #ブランドの名前
+|name|string||
 ### Association
-- has_many :items
+- has_many :dms, dependent: :destroy
+- has_many :entries, dependent: :destroy
 
 ## dmsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true|  #ブランドの名前
+|user_id|bigint|foreign_key: true|
+|room_id|bigint|foreign_key: true|
+|content|text||
+|image|text||
 ### Association
-- has_many :items
+- belongs_to :user
+- belongs_to :room
 
 ## entriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true|  #ブランドの名前
+|user_id|bigint|null: false|
+|room_id|bigint|null: false|
 ### Association
-- has_many :items
+- belongs_to :user
+- belongs_to :room
+
+## msg_categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|message_id|bigint|foreign_key: true|
+|category_id|bigint|foreign_key: true|
+### Association
+- belongs_to :message
+- belongs_to :category
+
+## commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|message_id|integer|null: false|
+|user_id|integer|null: false|
+|comment_num|integer||
+|replied_num|integer||
+### Association
+- belongs_to :user
+- belongs_to :message
+
+## categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|default: "", null: false|
+|ancestry|string||
+
+### Association
+- has_many :msg_categories
+- has_many :messages, through: :msg_categories
+- has_ancestry
