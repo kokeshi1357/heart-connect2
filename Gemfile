@@ -77,3 +77,5 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'fastimage'
 gem 'ancestry'
+
+gem "aws-sdk-s3", require: false
