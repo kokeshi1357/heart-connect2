@@ -65,5 +65,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
   # end
-  
+  if Rails.env.development?
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
 end

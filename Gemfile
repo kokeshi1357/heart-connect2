@@ -79,3 +79,5 @@ gem 'fastimage'
 gem 'ancestry'
 
 gem "aws-sdk-s3", require: false
+gem 'rmagick'
+gem 'fog-aws'
