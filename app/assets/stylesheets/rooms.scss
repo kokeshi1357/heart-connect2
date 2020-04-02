@@ -64,7 +64,7 @@
    border-radius: 5px;
    .anothers_name{
     background-color: #ffffff8c;
-    border-bottom: 2px solid steelblue;
+    border-bottom: 2px solid #138fc1b8;
     border-radius: 5px 5px 0 0;
     padding: 7px 0;
     a{
@@ -75,7 +75,8 @@
       vertical-align: middle;
       margin: 0 0 0 5px;
       &:hover{
-       opacity: 0.8;
+        color: #138fc1;
+        transition: all ease-out 0.2s;
       }
     }
    }

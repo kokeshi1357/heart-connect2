@@ -22,30 +22,21 @@ $(function (){
                 </div>`;
     $('.index-table').append(html);
   };
-  //タグアイコンをクリックで表示
+  //タグアイコンをクリックで表示・色の切り替え
   $('.tag_push').on('click', function(){
     $('.tag_choose').fadeToggle(400);
   });
+  $('.cat_tag').on('click', function(){
+   $('.cat_tag').css('background-color', '#fbfbfb8f');
+   $(this).css('background-color', '#5dcefbd6');
+  });
   //cssでカテゴリー以下のタグを表示・非表示
   $('.cat_btn').on('click', function(){
-    var btn_id = $(this).prop('name')
-    if (btn_id == ''){
-      $(this).attr('name', 'show')
-      $(this).next().css({
-       'display': 'flex',
-       'flex-wrap': 'wrap',
-       'margin': '8px 0 0'
-      })
-    }else{
-     $(this).attr('name', '')
-     $(this).next().css({
-      'display': 'none',
-      'margin': '0'
-     })
-    };
+    $(this).next().slideToggle(400);
   });
   //投稿一覧ボタン
   $('.index-head__title').click(function(){
+    $('.cat_tag').css('background-color', '#fbfbfb8f');
     $.ajax({
      url: '/messages/tag_search',
      type: 'GET',

@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
-  before_action :set_message, except: [:index, :new, :create, :tag_spread, :tag_search]
+  before_action :set_message, only: [:destroy, :edit, :update, :show, :trash_update]
+  before_action :set_messages, only: [:index, :index_in, :index_out]
   before_action :set_message_user, only: [:show]
   before_action :set_parents, only: [:new, :edit]
 
   def index
-    @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)  # .order("created_at DESC")
   end
 
   def show
@@ -85,12 +85,22 @@ class MessagesController < ApplicationController
       @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)
     end
   end
+  
+  def index_in
+  end
+
+  def index_out
+  end
 
   private
     def set_message
       @message = Message.find(params[:id])
     end
     
+    def set_messages
+      @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)  # .order("created_at DESC")
+    end
+
     def set_parents
       @parents = Category.where(ancestry: nil)
     end

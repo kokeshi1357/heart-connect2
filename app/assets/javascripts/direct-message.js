@@ -28,7 +28,7 @@ $(function(){
       $(".send_dm").css('background-color','#a6a9ab');
     }else{
       $("#dm_content").attr('data-name', 'active')
-      $(".send_dm").css('background-color','#76d7ff');
+      $(".send_dm").css('background-color','#61d0ff');
     };
   });
   $('.dm-form').on('submit', function(e){

@@ -1,0 +1,35 @@
+.box
+  = render "modules/side-bar"
+  .box_2
+    .index-whole
+      .index-head
+        %h1.index-head__title 投稿一覧
+        .tag_shift
+      .index-table
+        - if @messages[0].present?
+          - @messages.each do |message|
+            .message_box
+              - @image = message.images[0]
+              - if @image.present?
+                .index_message_image
+                  = image_tag @image.img_src.url,{style: "height:100px; width:150px;"}
+              - else
+                .no_image No Image
+              .message
+                = link_to '', message, id: :link
+                .chara
+                  = message.user.character
+                .name
+                  = message.user.name
+                .title
+                  %p.title__call Title：
+                  = message.title
+        - else
+          .msg_empty_notice 現在の投稿はありません
+        = paginate(@messages)
+.open_box
+  .open1 
+    %p 
+      %i.fas.fa-paper-plane.faa-pulse.animated
+      ログアウトしました
+  .open2

@@ -1,8 +1,6 @@
 body.main-body{
   font-family: "helvetica neue", YuGothic, "ヒラギノ角ゴ pron w3", "Hiragino Kaku Gothic ProN", Arial, メイリオ, Meiryo, sans-serif;
-  height: 100vh;
-  width: 100%;
-  background-color: steelblue;
+  position: relative;
   .contents{
     width: 100%;
     min-height: 733px;
@@ -15,7 +13,35 @@ body.main-body{
   .contents{
     width: 100%;
     display: block;
-    background-color: steelblue;
+  }
+  .open_box{
+    position: fixed;
+    top: -52%;
+    z-index: 20;
+    opacity: 0.9;
+    .open1{
+      background-color: #30c1ff;
+      text-align: center;
+      border-bottom: 1px solid white;
+      animation: anime1 1.1s ease-in 1.3s;
+      animation-fill-mode: forwards;
+      p{
+        color: white;
+        font-size: 28px;
+        line-height: 1500px;
+      }
+    }
+    .open2{
+      background-color: #45c4fb;
+      animation: anime2 1.1s ease-in 1.3s;
+      animation-fill-mode: forwards;
+    }
+    @keyframes anime2 {
+      100% {transform: translateY(100%);}
+    }
+    @keyframes anime1 {
+      100% {transform: translateY(-100%);}
+    }
   }
 }
 .fixed{

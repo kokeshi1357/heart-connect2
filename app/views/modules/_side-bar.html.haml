@@ -14,7 +14,8 @@
       %li.cat
         %button.cat_btn{name: ''}
           = "#{parent.name}"
-        %ul.cat_lists 
-          - parent.children.each do |child|
-            %li.cat_tag{"data-id": child.id}
-              = child.name
+        .cat_exibit
+          %ul.cat_lists{hidden: ""}
+            - parent.children.each do |child|
+              %li.cat_tag{"data-id": child.id}
+                = child.name

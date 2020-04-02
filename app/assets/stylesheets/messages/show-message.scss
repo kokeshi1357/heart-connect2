@@ -20,6 +20,10 @@
         font-size: 20px;
         line-height: 45px;
         margin: 0 8px 0 0;
+        &:hover{
+          color: #138fc1;
+          transition: all ease-out 0.2s;
+        }
       }
       .posted_date{
         margin: 0 0 0 20px;

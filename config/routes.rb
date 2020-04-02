@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     collection do
       get 'tag_spread', dafaults: { format: 'json'}
       get 'tag_search', dafaults: { format: 'json'}
+      get 'index_in'
+      get 'index_out'
     end
     resources :comments, only: :create
   end

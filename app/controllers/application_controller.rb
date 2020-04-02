@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
 
  private 
  def after_sign_in_path_for(resource)
-   messages_path # ログイン後に遷移するpathを設定
+  index_in_messages_path # ログイン後に遷移するpathを設定
  end
 
  def after_sign_out_path_for(resource)
-   messages_path # ログアウト後に遷移するpathを設定
+  index_out_messages_path # ログアウト後に遷移するpathを設定
  end
 end

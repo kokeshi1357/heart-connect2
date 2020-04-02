@@ -48,19 +48,24 @@
           border-left: 5px solid #0cb8ffa1;
           border-bottom: 1px solid #0cb8ff85;
         }
-        ul.cat_lists{
+        .cat_exibit{
           display: none;
-          overflow: scroll;
-          max-height: 250px;
-          li{
-            font-size: 14px;
-            color: #555;
-            background-color: #fbfbfb8f;
-            border-radius: 5px;
-            padding: 2px 9px;
-            border: 1px solid #5dcefb;
-            margin: 0 6px 6px 0;
-            cursor: pointer;
+          ul.cat_lists{
+            margin: 8px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: scroll;
+            max-height: 250px;
+            li{
+              font-size: 14px;
+              color: #555;
+              background-color: #fbfbfb8f;
+              border-radius: 5px;
+              padding: 2px 9px;
+              border: 1px solid #5dcefb;
+              margin: 0 6px 6px 0;
+              cursor: pointer;
+            }
           }
         }
       }
