@@ -2,8 +2,7 @@ class UsersController < ApplicationController
  before_action :set_user, only: [:show, :edit]
  def show
   if user_signed_in?
-    @messages = Message.where(user_id: current_user.id, trash_status: nil).order(created_at: "DESC")
-    @messagess = Message.where(user_id: current_user.id, trash_status: 1).order(created_at: "DESC")
+    @messages = Message.where(user_id: current_user.id, draft_status: 1).order(created_at: "DESC")
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id
@@ -48,9 +47,11 @@ class UsersController < ApplicationController
 
  def msg_history_show
    if params[:status] == "current"
-    @messages = Message.where(user_id: current_user.id, trash_status: nil).order(created_at: "DESC")
+    @messages = current_user.messages.where(trash_status: nil, draft_status: nil).order(created_at: "DESC")
    elsif params[:status] == "trash"
-    @messages = Message.where(user_id: current_user.id, trash_status: 1).order(created_at: "DESC")
+    @messages = current_user.messages.where(trash_status: 1).order(created_at: "DESC")
+   elsif params[:status] == "draft"
+    @messages = current_user.messages.where(trash_status: nil).order(created_at: "DESC")
    end
  end
 
@@ -60,10 +61,6 @@ class UsersController < ApplicationController
      @message.update(trash_status: nil)
    end
  end
-
-  def get_history_info
-    @messages = Message.where(user_id: current_user.id, trash_status: nil).order(created_at: "DESC")
-  end
 
  private
 

@@ -17,13 +17,14 @@ Rails.application.routes.draw do
   resources :messages do
     member do
       patch 'trash_update'
-      patch 'draft_update'
+
     end
     collection do
       get 'tag_spread', dafaults: { format: 'json'}
       get 'tag_search', dafaults: { format: 'json'}
       get 'index_in'
       get 'index_out'
+      patch 'draft_update'
     end
     resources :comments, only: :create
   end

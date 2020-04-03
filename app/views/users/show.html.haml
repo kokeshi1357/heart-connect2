@@ -16,79 +16,80 @@
       %li.list
         = icon("fas", "question-circle")
     .mypage__whole
-      .mypage-top
-        %span.top-text 投稿する
-      .mypage-main
-        .posting_box
-          .post_options
-            %p 投稿しよう
-            .post_btn
-              = link_to "/messages/new", class: "new_post grind" do
-                = icon('fas', 'paper-plane')
-                新しく投稿する
-            .draft_post.grind
-              = icon('fas', 'file')
-              下書きから投稿
-            .share_post
-              %p 投稿をシェアしよう
-              .Line
-                = icon('fab', 'line')
-                Lineで
-                -# .line-it-button{"data-color" => "default", "data-count" => "false", "data-lang" => "ja", "data-size" => "small", "data-type" => "share-b", "data-url" => "https://heart-connect2.herokuapp.com/messages/new", "data-ver" => "3", :style => "display: none;"}
-                -# %script{:async => "async", :defer => "defer", :src => "https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"}
-              .twitter
-                = icon('fab', 'twitter')
-                Twitterで
-              -# %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
-              %a.twitter{"data-url": "https://heart-connect2.herokuapp.com/messages/new", "data-lang" => "ja", "data-related" => "app_fortune,supunic_sup", "data-show-count" => "false", "data-text" => "【Fortune Checker】今朝の占いをまとめてチェック！", "data-via" => "app_fortune", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"}
-          .post_frame
-            .post_menu 下書き
-            - @msgs = current_user.messages.where(draft_status: 1)
-            .posting_lists
-              - @msgs.each_with_index do |msg, idx|
-                %a{href: "/messages/#{msg.id}/edit", id: "link_#{idx}"}
-                  %li.post
-                    .post__title
-                      = msg.title
-                    .img_and_date
-                      .images
-                        - msg.images.each do |img|
-                          %img.post_msg_img{:height => "22", :src => img.img_src.url, :width => "22"}
-                      .date
-                        = msg.created_at.strftime('%Y/%m/%d %H:%M')
-                    .post__body
-                      = msg.body
+      -# .mypage-top
+      -#   %span.top-text 投稿する
+      -# .mypage-main
+      -#   .posting_box
+      -#     .post_options
+      -#       %p 投稿しよう
+      -#       .post_btn
+      -#         = link_to "/messages/new", class: "new_post grind" do
+      -#           = icon('fas', 'paper-plane')
+      -#           新しく投稿する
+      -#       .draft_post.grind
+      -#         = icon('fas', 'file')
+      -#         下書きから投稿
+      -#       .share_post
+      -#         %p 投稿をシェアしよう
+      -#         .Line{"data-color" => "default", "data-count" => "false", "data-lang" => "ja", "data-size" => "small", "data-type" => "share-b", "data-url" => "https://heart-connect2.herokuapp.com/messages/new", "data-ver" => "3"}
+      -#           = icon('fab', 'line')
+      -#           Lineで
+      -#           = link_to 'LINE', "http://line.me/R/msg/text/?https://heart-connect2.herokuapp.com/messages&text=タイトル", target: '_blank'
+      -#           -# .line-it-button{"data-color" => "default", "data-count" => "false", "data-lang" => "ja", "data-size" => "small", "data-type" => "share-b", "data-url" => "https://heart-connect2.herokuapp.com/messages/new", "data-ver" => "3"} ddd
+      -#           -# %script{:async => "async", :defer => "defer", :src => "https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"}
+      -#         .twitter
+      -#           = icon('fab', 'twitter')
+      -#           Twitterで
+      -#         -# %a.twitter-share-button{"data-text" => "hello", "data-url" => "https://heart-connect2.herokuapp.com/messages/new", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"} Tweet
+      -#         -# %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
 
-    -# .mypage__whole
-    -#   .mypage-top 
-    -#     %span.top-text プロフィール
-    -#   .mypage-main
-    -#     = form_for current_user, html: {class: 'edit_user'} do |f|
-    -#       .user-info
-    -#         .user-info__right
-    -#           .img-wrapper{for: 'user_user_image'}
-    -#             %label{for: 'user_user_image'}
-    -#               - if current_user.user_image.present?
-    -#                 = image_tag current_user.user_image.url, class: "profile-img"
-    -#               - else
-    -#                 = image_tag '', class: "profile-img", style: "display:none;"
-    -#                 = icon("fas", "user", id: "icon_user")
-    -#             = icon("fas", "camera", id: "camera")
-    -#           = f.file_field :user_image, style: "display: none;"
-    -#           .introduction
-    -#             %span 自己紹介
-    -#             .introduction__detail 
-    -#               = f.text_area :detail
-    -#         .user-info__left
-    -#           .text-box
-    -#             %span ニックネーム
-    -#             .user-text
-    -#               = f.text_field :name, maxlength: 25
-    -#           .text-box
-    -#             %span 職業
-    -#             .user-text
-    -#               = f.select(:character,[["患者","患者"],["医師",'医師'],["アカデミー","アカデミー"]],selected: "#{current_user.character}")
-    -#           = f.submit "更新する", class: "user-update"
+          -# .post_frame
+          -#   .post_menu 下書き
+          -#   - @msgs = current_user.messages.where(draft_status: 1).order(created_at: "DESC")
+          -#   .posting_lists
+          -#     - @msgs.each_with_index do |msg, idx|
+          -#       %a{"data-url" => "https://heart-connect2.herokuapp.com/messages/#{msg.id}", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"}
+          -#         %li.post
+          -#           .post__title
+          -#             = msg.title
+          -#           .img_and_date
+          -#             .images
+          -#               - msg.images.each do |img|
+          -#                 %img.post_msg_img{:height => "22", :src => img.img_src.url, :width => "22"}
+          -#             .date
+          -#               = msg.created_at.strftime('%Y/%m/%d %H:%M')
+          -#           .post__body
+          -#             = msg.body
+
+      .mypage-top 
+        %span.top-text プロフィール
+      .mypage-main
+        = form_for current_user, html: {class: 'edit_user'} do |f|
+          .user-info
+            .user-info__right
+              .img-wrapper{for: 'user_user_image'}
+                %label{for: 'user_user_image'}
+                  - if current_user.user_image.present?
+                    = image_tag current_user.user_image.url, class: "profile-img"
+                  - else
+                    = image_tag '', class: "profile-img", style: "display:none;"
+                    = icon("fas", "user", id: "icon_user")
+                = icon("fas", "camera", id: "camera")
+              = f.file_field :user_image, style: "display: none;"
+              .introduction
+                %span 自己紹介
+                .introduction__detail 
+                  = f.text_area :detail
+            .user-info__left
+              .text-box
+                %span ニックネーム
+                .user-text
+                  = f.text_field :name, maxlength: 25
+              .text-box
+                %span 職業
+                .user-text
+                  = f.select(:character,[["患者","患者"],["医師",'医師'],["アカデミー","アカデミー"]],selected: "#{current_user.character}")
+              = f.submit "更新する", class: "user-update"
   - else
     -# 他ユーザーの情報
     .other_info_left

@@ -121,9 +121,18 @@ $(function(){
     return result;
    }); 
    $('#throw_draft').on('click', function(){
-    var result = window.confirm(
-      "下書きとして投稿を保存しますか？ (下書きはマイページより確認できます)"
-    );
-    return result;
+    var title   = $("#message_title").val();
+    if (title == ''){
+      alert('*下書き：タイトルを入力してください');
+      return false;
+    }else{
+      var result = window.confirm(
+        "下書きとして投稿を保存しますか？ (下書きはマイページより確認できます)"
+      );
+      if (result == true){
+        $('#message_draft_status').attr('value',1);
+      }
+      return result;
+    };
    }); 
 });

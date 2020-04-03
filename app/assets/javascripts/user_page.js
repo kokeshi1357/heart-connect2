@@ -18,13 +18,13 @@ $(function(){
             </div>
           <div class="user-show-text">プロフィール</div>
           </li>
-          <li class="setting-box">
+          <li class="setting-box list-box" data-id="2">
             <div class="logo-box">
               <i class="fas fa-cog"></i>
             </div>
             <span class="user-show-text">設定</span>
           </li>
-          <li class="guide-box">
+          <li class="guide-box list-box" data-id="3">
             <div class="logo-box">
               <i class="far fa-map"></i>
             </div>
@@ -38,13 +38,13 @@ $(function(){
             </div>
             <span class="user-show-text">投稿リスト</span>
           </li>
-          <li class="posting-box" >
+          <li class="posting-box list-box" data-id="5">
             <div class="logo-box">
               <i class="fas fa-edit icon-write"></i>
             </div>
             <span class="user-show-text">投稿する</span>
           </li>
-          <li class="help-box">
+          <li class="help-box list-box" data-id="6">
             <div class="logo-box">
               <i class="fas fa-question-circle"></i>
             </div>
@@ -233,6 +233,7 @@ $(function(){
     });
     makeProfileAjax();
     buildHistoryWhole();
+    buildPostingWhole();
   });
 
   //プロフィール
@@ -332,9 +333,14 @@ $(function(){
   };
   //画面表示のhtml(上:現在の投稿 下:ゴミ箱)
   function buildCurrentHtml(msg,i){
+    if (msg.images[0]){
+      var img = `<img src=${msg.images[0].img_src.url} width="60" height="50">`
+    }else{
+      var img = `<img width="60" height="50">`
+    };
     var html = 
           `<li class="current-post" data-id=${msg.id} id="current_index_${i}">
-            <img src=${msg.images[0].img_src.url} width="60" height="50">
+            ${img}
             <div class="post-log">
               <div class="date">
                 ${msg.created_at}
@@ -347,9 +353,14 @@ $(function(){
     return html;
   };
   function buildTrashHtml(msg,i){
+    if (msg.images[0]){
+      var img = `<img src=${msg.images[0].img_src.url} width="60" height="50">`
+    }else{
+      var img = `<img width="60" height="50">`
+    };
     var html = 
           `<li class="past-post" data-id=${msg.id} id="past_index_${i}">
-            <img src=${msg.images[0].img_src.url} width="60" height="50">
+            ${img}
             <div class="post-log">
               <div class="date">
                 ${msg.created_at}
@@ -400,8 +411,9 @@ $(function(){
   function buildHistoryWhole(){
     $(".posts-box").click(function(){
       $.ajax({
-        url: '/users/get_history_info',
+        url: '/users/msg_history_show',
         type: 'GET',
+        data: {status: "current"},
         dataType: 'json'
       })
       .done(function(data){
@@ -585,11 +597,122 @@ $(function(){
 
 
  //投稿ページ(マイページ)
-  function buildUserPost(){
-    var html = ``;
+  function buildUserPost(msgs){
+    var html = 
+           `<div class="mypage-top">
+              <span class="top-text">投稿する</span>
+            </div>
+            <div class="mypage-main">
+              <div class="posting_box">
+                <div class="post_options">
+                  <p>投稿しよう</p>
+                  <div class="post_btn">
+                    <a class="new_post grind" href="/messages/new">
+                      <i class="fas fa-paper-plane"></i>
+                      新しく投稿する
+                    </a>
+                  </div>
+                <div class="draft_post grind">
+                  <i class="fas fa-file"></i>
+                  下書きから投稿
+                </div>
+                <div class="share_post">
+                  <p>投稿をシェアしよう</p>
+                  <div class="Line">
+                    <i class="fab fa-line"></i>
+                    Lineで
+                  </div>
+                  <div class="twitter">
+                    <i class="fab fa-twitter"></i>
+                    Twitterで
+                  </div>
+                </div>
+                </div>
+                <div class="post_frame">
+                  <div class="post_menu">下書き</div>
+                  <div class="posting_lists">
+                    ${msgs}
+                  </div>
+                </div>
+              </div>
+            </div>`;
+    $('.mypage__whole').append(html);
   };
-  //
-  $('.posting-box').on('click', function(){
-    
-  });
+  function buildPostArray(msg, link, clas){
+    var imgs = [''];
+    msg.images.forEach(function(img){
+      imgs += `<img class="post_msg_img" height="22" src=${img.img_src.url} width="22">`;
+    })
+    var post =
+           `${link}
+              <li class=${clas}>
+                <div class="post__title">
+                  ${msg.title}
+                </div>
+                <div class="img_and_date">
+                  <div class="images">
+                    ${imgs}
+                  </div>
+                  <div class="date">
+                    ${msg.created_at}
+                  </div>
+                </div>
+                <div class="post__body">
+                  ${msg.body}
+                </div>
+              </li>
+            </a>`
+    return post;
+  }
+  
+  buildPostingWhole();
+  function buildPostingWhole(){
+    $('.posting-box').on('click', function(){
+      $.ajax({
+        url: '/users/msg_history_show',
+        type: 'GET',
+        data: {status: "draft"},
+        dataType: 'json'
+      })
+      .done(function(data){
+        var msgs = [''];
+        var line_msgs = [''];
+        var twitter_msgs =[''];
+        data.forEach(function(msg){
+          if (msg.draft_status == 1){
+            var draft_class = 'post';
+            var link = `<a class="draft_post" href="/messages/${msg.id}/edit">`
+            msgs += buildPostArray(msg, link, draft_class);
+          }else{
+            var l_name = 'line_post';
+            var t_name = 'twi_post';
+            var Llink = `<a href="http://line.me/R/msg/text/?https://heart-connect2.herokuapp.com/messages/${msg.id}&text=${msg.title}" target='_blank'>`
+            var Tlink = `<a "data-url"="https://heart-connect2.herokuapp.com/messages/${msg.id}" href="https://twitter.com/share?ref_src=twsrc%5Etfw" target='_blank'>`
+            line_msgs += buildPostArray(msg, Llink, l_name);
+            twitter_msgs += buildPostArray(msg, Tlink, t_name);
+          };
+        });
+        $('.mypage__whole').empty();
+        buildUserPost(msgs);
+        //下書きが選択された時
+        $('.draft_post').on('click', function(){
+          $('.post_menu').html('下書き');
+          $('.posting_lists').html(msgs);
+        });
+        //Lineが選択された時
+        $('.Line').on('click', function( ){
+          $('.post_menu').html('Lineで投稿をシェア');
+          $('.posting_lists').html(line_msgs);
+        });
+        //Twitterが選択された時
+        $('.twitter').on('click', function(){
+          $('.post_menu').html('Twitterで投稿をシェア');
+          $('.posting_lists').html(twitter_msgs);
+        });
+      })
+      .fail(function(){
+        alert('system failure');
+      });
+    });
+  };
 });

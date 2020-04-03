@@ -45,13 +45,11 @@ class MessagesController < ApplicationController
         @image = @message.images.find(id).destroy
       end
     end
-    respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { render :show, status: :ok, location: @message }
+    if @message.update(message_params)
+      if @message[:draft_status] == nil
+        redirect_to message_path(@message.id)
       else
-        format.html { render :edit }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        redirect_to root_path
       end
     end
   end
@@ -70,8 +68,15 @@ class MessagesController < ApplicationController
   end
 
   def  draft_update
-    @message.update(draft_status: 1)
-    redirect_to root_path
+    if @message.present?
+      @message.update(draft_status: 1)
+      redirect_to root_path
+    else
+      @message = Message.new(message_params)
+      @message[:draft_status] = 1
+      @message.save
+      redirect_to root_path
+    end
   end
 
   def tag_spread
@@ -112,6 +117,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.require(:message).permit(:title, :body, images_attributes: [:img_src, :_destroy, :id], category_ids: []).merge(user_id: current_user.id)
+      params.require(:message).permit(:title, :body, :draft_status,images_attributes: [:img_src, :_destroy, :id], category_ids: []).merge(user_id: current_user.id)
     end
 end

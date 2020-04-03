@@ -7,7 +7,7 @@
       %li
         = icon("fas","paperclip")
       %li
-        = link_to "/messages/#{@message.id}/draft_update", method: :patch, id: 'throw_draft' do
+        %button{type: "submit", id: 'throw_draft'}
           = icon("fas","file")
       %li
         = icon("fas","tags", id: "tag_push")
@@ -46,3 +46,4 @@
         %span.msg_e#detail_error
         = f.text_area :body,placeholder: "テキスト："
         %button.text_reset_btn{type: "button"} リセット
+    = f.hidden_field :draft_status, value: nil

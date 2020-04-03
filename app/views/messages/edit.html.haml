@@ -7,7 +7,7 @@
       %li
         = icon("fas","paperclip")
       %li
-        = link_to "/messages/#{@message.id}/draft_update", method: :patch, id: 'throw_draft' do
+        %button{type: "submit", id: 'throw_draft'}
           = icon("fas","file")
       %li
         = icon("fas","tags", id: "tag_push")
@@ -70,3 +70,5 @@
     //削除画像用
     - @delete_array = []
     = hidden_field_tag :delete_ids, @delete_array
+    //下書き保存用
+    = f.hidden_field :draft_status, value: nil
