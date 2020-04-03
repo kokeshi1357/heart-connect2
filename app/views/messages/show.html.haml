@@ -21,7 +21,7 @@
               %li
                 = link_to '編集する', edit_message_path(@message), class: "show-menu"
               %li
-                = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu"
+                = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu", id: 'throw_trash'
               %li
                 = link_to '戻る', messages_path, class: "show-menu"
         - if @message.categories.present?

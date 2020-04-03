@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   .message-side{
-    height: 540px;
+    height: fit-content;
     width: 18%;
     min-width: 140px;
     background-color: #00d0ff30;
@@ -13,14 +13,16 @@
     border-radius: 5px;
     text-align: center;
     ul.msg_menu{
-      height: fit-content;
-      margin: 11% 0 0;
+      margin: 11% 0;
       li{
         height: 100px;
         button{
           background: none;
           border: none;
           outline: none;
+        }
+        a{
+          color: #333;
         }
         i{
         line-height: 100px;

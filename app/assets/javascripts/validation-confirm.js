@@ -74,9 +74,13 @@ $(function(){
   $('button:submit[class="new_msg_send"]').click(function(){
   if(!msg_input_check()){
     return false;
-  }
+  }else{
+    var result = window.confirm(
+      "投稿を完了します。"
+    );
+    return result;
+  };
   });
-
   function msg_input_check(){
     var result = true;
 
@@ -87,18 +91,39 @@ $(function(){
     var title   = $("#message_title").val();
     var detail  = $("#message_body").val();
 
+    //エラー文
+    var html = "";
+    var html2 = "";
+
     if(title != undefined){
       if(title == ""){
-       $("#title_error").html("*タイトルを入力してください。");
+       var html =  "*タイトルを入力してください\n";
        result = false;
       }
     }
     if(detail != undefined){
       if(detail == ""){
-        $("#detail_error").html("*テキストを入力してください。");
+        var html2 = "*テキストを入力してください";
         result = false;
       }
     }
+    if (result == false){
+      alert(html + html2);
+    }
     return result;
   };
+
+  //確認
+  $('#throw_trash').on('click', function(){
+    var result = window.confirm(
+      "ゴミ箱に入れますか？ (投稿は非表示になり、マイページより確認できます)"
+    );
+    return result;
+   }); 
+   $('#throw_draft').on('click', function(){
+    var result = window.confirm(
+      "下書きとして投稿を保存しますか？ (下書きはマイページより確認できます)"
+    );
+    return result;
+   }); 
 });

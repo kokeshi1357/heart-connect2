@@ -4,6 +4,7 @@ class Messages < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :body
       t.integer :trash_status
+      t.integer :draft_status
       t.timestamps
       t.references :user, foreign_key: true
     end

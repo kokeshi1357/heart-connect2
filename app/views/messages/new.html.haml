@@ -7,11 +7,10 @@
       %li
         = icon("fas","paperclip")
       %li
-        = icon("fas","file")
+        = link_to "/messages/#{@message.id}/draft_update", method: :patch, id: 'throw_draft' do
+          = icon("fas","file")
       %li
         = icon("fas","tags", id: "tag_push")
-      %li
-        = icon("fas","trash")
 
   .message-main
     .title-area

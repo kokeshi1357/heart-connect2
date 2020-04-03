@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :messages do
     member do
       patch 'trash_update'
+      patch 'draft_update'
     end
     collection do
       get 'tag_spread', dafaults: { format: 'json'}

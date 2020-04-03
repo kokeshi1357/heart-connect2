@@ -38,7 +38,7 @@ $(function(){
             </div>
             <span class="user-show-text">投稿リスト</span>
           </li>
-          <li class="posting-box">
+          <li class="posting-box" >
             <div class="logo-box">
               <i class="fas fa-edit icon-write"></i>
             </div>
@@ -292,7 +292,7 @@ $(function(){
   function buildUserHistory(msg_li, img_li, msg_body, ntc){
     var html = 
          `<div class="mypage-top">
-            <span class="top-text">投稿履歴</span>
+            <span class="top-text">投稿リスト</span>
           </div>
           <div class="mypage-main">
             <div class="history-box">
@@ -582,4 +582,14 @@ $(function(){
       });
     });
   };
+
+
+ //投稿ページ(マイページ)
+  function buildUserPost(){
+    var html = ``;
+  };
+  //
+  $('.posting-box').on('click', function(){
+    
+  });
 });

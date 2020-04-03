@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:destroy, :edit, :update, :show, :trash_update]
-  before_action :set_messages, only: [:index, :index_in, :index_out]
+  before_action :set_message, only: [:destroy, :edit, :update, :show, :trash_update, :draft_update]
+  before_action :set_messages, only: [:index, :index_in, :index_out, :tag_search]
   before_action :set_message_user, only: [:show]
   before_action :set_parents, only: [:new, :edit]
 
@@ -45,7 +45,6 @@ class MessagesController < ApplicationController
         @image = @message.images.find(id).destroy
       end
     end
-    # binding.pry
     respond_to do |format|
       if @message.update(message_params)
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
@@ -70,6 +69,11 @@ class MessagesController < ApplicationController
     redirect_to root_path
   end
 
+  def  draft_update
+    @message.update(draft_status: 1)
+    redirect_to root_path
+  end
+
   def tag_spread
     if params[:parent_id]
       parent = Category.find(params[:parent_id])
@@ -80,9 +84,7 @@ class MessagesController < ApplicationController
   def tag_search
     if params[:tag_id]
       tag = Category.find(params[:tag_id])
-      @messages = tag.messages.where(trash_status: nil).order(created_at: "DESC")
-    else
-      @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)
+      @messages = tag.messages.where(trash_status: nil, draft_status: nil).order(created_at: "DESC")
     end
   end
   
@@ -98,7 +100,7 @@ class MessagesController < ApplicationController
     end
     
     def set_messages
-      @messages = Message.where(trash_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)  # .order("created_at DESC")
+      @messages = Message.where(trash_status: nil, draft_status: nil).includes(:user).order(created_at: "DESC").page(params[:page]).per(6)  # .order("created_at DESC")
     end
 
     def set_parents

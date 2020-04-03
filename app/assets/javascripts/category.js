@@ -14,6 +14,9 @@ $(function (){
                     <div class="name">
                       ${msg.user_name}
                     </div>
+                    <div class="created_date">
+                      ${msg.date}
+                    </div>
                     <div class="title">
                       <p class="title__call">Title：</p>
                       ${msg.title}
@@ -23,7 +26,7 @@ $(function (){
     $('.index-table').append(html);
   };
   //タグアイコンをクリックで表示・色の切り替え
-  $('.tag_push').on('click', function(){
+  $('#tag_push').on('click', function(){
     $('.tag_choose').fadeToggle(400);
   });
   $('.cat_tag').on('click', function(){
@@ -32,7 +35,7 @@ $(function (){
   });
   //cssでカテゴリー以下のタグを表示・非表示
   $('.cat_btn').on('click', function(){
-    $(this).next().slideToggle(400);
+    $(this).next().slideToggle(300);
   });
   //投稿一覧ボタン
   $('.index-head__title').click(function(){
