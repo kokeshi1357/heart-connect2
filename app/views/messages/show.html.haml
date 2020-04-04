@@ -21,7 +21,7 @@
           .share_box
             %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", 'data-text': "【Heart Connect】同じ境遇や体験を持つ方と繋がってみませんか？？\n#{@message.title}...↓\nhttps://heart-connect2.herokuapp.com/messages/#{@message.id}\n", 'data-url': " " ,'data-hashtags': "\n#{@categories.join(',')}",'data-show-count': "true"}
             %script{async: '', src: "https://platform.twitter.com/widgets.js", charset: "utf-8"}
-            = link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", title: 'LINE', target: '_blank', style: "", class: "line_link"
+            = link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=【Heart Connect】#{@message.title}", title: 'LINE', target: '_blank', style: "", class: "line_link"
           - if current_user.present? && @message.user_id == current_user.id
             %button.menu_box
               = icon("fas","bars")

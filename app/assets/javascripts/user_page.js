@@ -686,7 +686,7 @@ $(function(){
           }else{
             var l_name = 'line_post';
             var t_name = 'twi_post';
-            var Llink = `<a href="http://line.me/R/msg/text/?https://heart-connect2.herokuapp.com/messages/${msg.id}&text=${msg.title}" target='_blank'>`
+            var Llink = `<a href="http://line.me/R/msg/text/?https://heart-connect2.herokuapp.com/messages/${msg.id}&text=【Heart Connect】${msg.title}" target='_blank'>`
             var Tlink = `<a "data-url"="https://heart-connect2.herokuapp.com/messages/${msg.id}" href="https://twitter.com/share?ref_src=twsrc%5Etfw" target='_blank'>`
             line_msgs += buildPostArray(msg, Llink, l_name);
             twitter_msgs += buildPostArray(msg, Tlink, t_name);

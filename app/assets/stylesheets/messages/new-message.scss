@@ -15,11 +15,13 @@
     ul.msg_menu{
       margin: 11% 0;
       li{
+        position: relative;
         height: 100px;
         button{
           background: none;
           border: none;
           outline: none;
+          position: relative;
         }
         a{
           color: #333;
@@ -32,6 +34,26 @@
             font-size: 55px;
             transition: all 0.2s ease-out;
           }
+        }
+        p{
+          opacity: 0;
+          position: absolute;
+          top: -2px;
+          left: 35%;
+          font-weight: bold;
+          font-size: 14px;
+        }
+        i:hover + p{
+          animation: fadeIn 0.7s ease 0s;
+          animation-fill-mode: forwards;
+        }
+        button:hover + p{
+          animation: fadeIn 0.7s ease 0s;
+          animation-fill-mode: forwards;
+        }
+        @keyframes fadeIn {
+          0% {opacity: 0}
+          100% {opacity: 1}
         }
       }
     }

@@ -4,14 +4,16 @@
       %li
         %button{type: "submit", class: "new_msg_send"}
           = icon("fas","paper-plane")
+        %p 投稿する
       %li
         = icon("fas","paperclip")
       %li
         %button{type: "submit", id: 'throw_draft'}
           = icon("fas","file")
+        %p 下書き
       %li
         = icon("fas","tags", id: "tag_push")
-
+        %p タグ付
   .message-main
     .title-area
       %span.msg_e#title_error
