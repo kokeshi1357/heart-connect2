@@ -14,16 +14,24 @@
           .posted_date
             = @message.created_at.strftime('%Y/%m/%d %H:%M')
           %nobr.user_page_notice ＊ユーザー情報を観覧するにはログインが必要です
-        - if current_user.present? && @message.user_id == current_user.id
-          %button.menu_box
-            = icon("fas","bars")
-            %ul.menu_lists
-              %li
-                = link_to '編集する', edit_message_path(@message), class: "show-menu"
-              %li
-                = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu", id: 'throw_trash'
-              %li
-                = link_to '戻る', messages_path, class: "show-menu"
+          - @categories =['']
+          - @message.categories.each do |cat|
+            - @categories << cat.name
+        .share_plus_menu
+          .share_box
+            %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", 'data-text': "【Heart Connect】同じ境遇や体験を持つ方と繋がってみませんか？？\n#{@message.title}...↓\nhttps://heart-connect2.herokuapp.com/messages/#{@message.id}\n", 'data-url': " " ,'data-hashtags': "\n#{@categories.join(',')}",'data-show-count': "true"}
+            %script{async: '', src: "https://platform.twitter.com/widgets.js", charset: "utf-8"}
+            = link_to 'LINE', "http://line.me/R/msg/text/?#{request.url}&text=タイトル", title: 'LINE', target: '_blank', style: "", class: "line_link"
+          - if current_user.present? && @message.user_id == current_user.id
+            %button.menu_box
+              = icon("fas","bars")
+              %ul.menu_lists
+                %li
+                  = link_to '編集する', edit_message_path(@message), class: "show-menu"
+                %li
+                  = link_to 'ゴミ箱', "/messages/#{@message.id}/trash_update", method: :patch, class: "show-menu", id: 'throw_trash'
+                %li
+                  = link_to '戻る', messages_path, class: "show-menu"
         - if @message.categories.present?
           .show_tags
             = icon('fas', 'tags')
