@@ -72,20 +72,17 @@ $(function(){
 
  // 投稿画面
   $('button:submit[class="new_msg_send"]').click(function(){
-  if(!msg_input_check()){
-    return false;
-  }else{
-    var result = window.confirm(
-      "投稿を完了します。"
-    );
-    return result;
-  };
+    if(!msg_input_check()){
+      return false;
+    }else{
+      var result = window.confirm(
+        "投稿を完了します。"
+      );
+      return result;
+    };
   });
   function msg_input_check(){
     var result = true;
-
-    // 入力エラー文をリセット
-    $(".msg_e").empty();
    
     // 入力内容セット
     var title   = $("#message_title").val();
@@ -134,5 +131,12 @@ $(function(){
       }
       return result;
     };
-   }); 
+  }); 
+
+  //入力リセット
+  $(function(){
+    $('.text_reset_btn').click(function(){
+      $('textarea').val("");
+    });
+  });
 });

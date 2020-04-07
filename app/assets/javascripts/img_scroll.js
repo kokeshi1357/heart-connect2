@@ -32,31 +32,4 @@ $(function(){
       }
     };
   };
-  //自動表示(完成したが今回のアプリではユーザビリティーの低下に繋がりそう)
-  // var img_count = $(".img_wrap").length;
-  // console.log(img_count);
-  // if (img_count != 1){
-  //  var distance = 0
-  //  let num = 1;
-  //  function slideshow_timer(){
-  //    if (num == img_count){
-  //      num = 1;
-  //      distance = 0;
-  //      $(".img_scroll_box").css({
-  //       "left": distance+"%",
-  //       "transition": " all 0.4s ease-in"
-  //      });
-  //    } 
-  //    else {
-  //      num ++;
-  //      distance -= 100;
-  //      $(".img_scroll_box").css({
-  //       "left": distance+"%",
-  //       "transition": " all 0.4s ease-in"
-  //      });
-  //    }
-  //    $(".img_scroll_box").css("transition", " all 0.25s ease-in");
-  //  }
-  //  setInterval(slideshow_timer, 5000);
-  // }
 });

@@ -2,10 +2,15 @@ $(function (){
  //サイドバーのカテゴリ表示(messageIndex)
   //タグ検索から表示する関数
   function buildTagMsg(msg){
+    if (msg.image != undefined){
+     var img = `<div class="index_message_image">
+                  <img style="height:100px; width:150px;" src=${msg.image.url}>
+                </div>`;
+    }else{
+     var img = "<div class='no_image'>No Image</div>";
+    }
     var html = `<div class="message_box">
-                  <div class="index_message_image">
-                    <img style="height:100px; width:150px;" src=${msg.image.url}>
-                  </div>
+                  ${img}
                   <div class="message">
                     <a id="link" href="/messages/${msg.id}"></a>
                     <div class="chara">
@@ -60,7 +65,7 @@ $(function (){
     .fail(function(){
       alert('failure')
     })
-  })
+  });
   //タグ検索
   $('.cat_tag').on('click', function(){
     var dataId = $(this).data('id');

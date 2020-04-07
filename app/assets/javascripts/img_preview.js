@@ -74,8 +74,7 @@ $(function(){
     $('.js-file_group:last').remove();
   }else{
     fileIndex.splice(0, lastIndex);
-  }
-  console.log(fileIndex);
+  };
 
   // 新規画像の処理(プレビュー/新しいinputの追加)
   $('.img-area__menu').on('change', '.js-file', function(e) {
